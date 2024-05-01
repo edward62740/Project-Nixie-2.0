@@ -1,0 +1,5 @@
+1714538241927	Delete resource 'BLE_Sensor'
+1714538245926	Delete resource 'BLE_TransparentMode'
+1714540928048	Delete resource 'BLE_p2pServer/Utilities/stm32_lcd.c'
+1714540952891	Delete resource 'BLE_p2pServer/Drivers/STM32WBxx_HAL_Driver/stm32wbxx_hal_qspi.c'
+1714541188524	Delete resource 'BLE_p2pServer/Drivers/BSP'
