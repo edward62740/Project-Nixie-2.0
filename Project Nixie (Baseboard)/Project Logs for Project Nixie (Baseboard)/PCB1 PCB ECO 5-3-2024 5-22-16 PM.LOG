@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=DP_1_4 Pin=U5-15
+Removed Pin From Net: NetName=DP_1_3 Pin=U5-16
+Add Component: Footprint Not Found QFN24_W-QFN4040-24_A1_DIO
+Added Pin To Net: NetName=DP_1_3 Pin=U5-15
+Added Pin To Net: NetName=DP_1_4 Pin=U5-16
+Add Class Member: Failed to add class member : Component U12 AP33771DKZ-13

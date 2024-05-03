@@ -1,0 +1,14 @@
+Added Component: Designator=NT1(PCBComponent_1)
+Added Component: Designator=NT2(PCBComponent_1)
+Added Component: Designator=NT3(PCBComponent_1)
+Added Component: Designator=NT4(PCBComponent_1)
+Added Component: Designator=NT5(PCBComponent_1)
+Added Component: Designator=NT6(PCBComponent_1)
+Add Component: Footprint Not Found D0016A_N
+Added Member To Class: ClassName=Drivers Member=Component NT1 Component_1
+Added Member To Class: ClassName=Drivers Member=Component NT2 Component_1
+Added Member To Class: ClassName=Drivers Member=Component NT3 Component_1
+Added Member To Class: ClassName=Drivers Member=Component NT4 Component_1
+Added Member To Class: ClassName=Drivers Member=Component NT5 Component_1
+Added Member To Class: ClassName=Drivers Member=Component NT6 Component_1
+Add Class Member: Failed to add class member : Component U3 SN75469DR

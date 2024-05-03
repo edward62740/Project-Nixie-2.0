@@ -1,0 +1,23 @@
+Change Component Designator: OldDesignator=NT1 NewDesignator=NT5
+Change Component Designator: OldDesignator=NT2 NewDesignator=NT6
+Change Component Designator: OldDesignator=NT3 NewDesignator=NT4
+Change Component Designator: OldDesignator=NT4 NewDesignator=NT1
+Change Component Designator: OldDesignator=NT5 NewDesignator=NT2
+Change Component Designator: OldDesignator=NT6 NewDesignator=NT3
+Add Component: Footprint Not Found QFN24_W-QFN4040-24_A1_DIO
+Change Net Name : Old Net Name=NetNT4_3 New Net Name=NetNT1_3
+Change Net Name : Old Net Name=NetNT4_4 New Net Name=NetNT1_4
+Change Net Name : Old Net Name=NetNT4_5 New Net Name=NetNT1_5
+Change Net Name : Old Net Name=NetNT4_6 New Net Name=NetNT1_6
+Change Net Name : Old Net Name=NetNT4_7 New Net Name=NetNT1_7
+Change Net Name : Old Net Name=NetNT4_8 New Net Name=NetNT1_8
+Change Net Name : Old Net Name=NetNT4_9 New Net Name=NetNT1_9
+Change Net Name : Old Net Name=NetNT4_10 New Net Name=NetNT1_10
+Change Net Name : Old Net Name=NetNT4_11 New Net Name=NetNT1_11
+Change Net Name : Old Net Name=NetNT4_12 New Net Name=NetNT1_12
+Change Net Name : Old Net Name=NetNT5_3 New Net Name=NetNT2_3
+Change Net Name : Old Net Name=NetNT5_4 New Net Name=NetNT2_4
+Change Net Name : Old Net Name=NetNT5_5 New Net Name=NetNT2_5
+Change Net Name : Old Net Name=NetNT5_6 New Net Name=NetNT2_6
+Change Net Name : Old Net Name=NetNT5_7 New Net Name=NetNT2_7
+Add Class Member: Failed to add class member : Component U? AP33771DKZ-13

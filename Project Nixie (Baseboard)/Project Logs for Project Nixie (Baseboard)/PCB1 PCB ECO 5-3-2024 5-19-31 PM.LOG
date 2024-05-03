@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=NetLabel198 Pin=U4-10
+Removed Pin From Net: NetName=NetLabel199 Pin=U4-11
+Removed Pin From Net: NetName=NetLabel200 Pin=U4-12
+Removed Pin From Net: NetName=NetLabel198 Pin=U5-10
+Removed Pin From Net: NetName=NetLabel199 Pin=U5-11
+Removed Pin From Net: NetName=NetLabel200 Pin=U5-12
+Removed Pin From Net: NetName=NetLabel201 Pin=U5-13
+Removed Pin From Net: NetName=NetLabel202 Pin=U5-14
+Removed Pin From Net: NetName=NetLabel203 Pin=U5-15
+Removed Pin From Net: NetName=NetLabel204 Pin=U5-16
+Add Component: Footprint Not Found QFN24_W-QFN4040-24_A1_DIO
+Added Pin To Net: NetName=DP_0_1 Pin=U4-10
+Added Pin To Net: NetName=DP_0_2 Pin=U4-11
+Added Pin To Net: NetName=DP_0_3 Pin=U4-12
+Added Pin To Net: NetName=DP_1_1 Pin=U5-10
+Added Pin To Net: NetName=DP_1_2 Pin=U5-11
+Added Pin To Net: NetName=DP_1_7 Pin=U5-12
+Added Pin To Net: NetName=DP_1_6 Pin=U5-13
+Added Pin To Net: NetName=DP_1_5 Pin=U5-14
+Added Pin To Net: NetName=DP_1_4 Pin=U5-15
+Added Pin To Net: NetName=DP_1_3 Pin=U5-16
+Add Class Member: Failed to add class member : Component U12 AP33771DKZ-13

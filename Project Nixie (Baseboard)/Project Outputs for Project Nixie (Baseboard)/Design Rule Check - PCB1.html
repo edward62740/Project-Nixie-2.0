@@ -1,0 +1,785 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5/3/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:44:38 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc" class="file"><acronym title="C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc">C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">147</td></tr>
+</table>
+</td>
+</table><a name="IDFGX5T0HBCBWYGBZS4CVGNVKD2KGVB1SPY3GZB5H3LVJBJDFQPOOL"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDP2N1HFJU3TLXBCQFOM3RQYYOUCBZYPKE3F2WJKFRBWTA3JHGCVEN">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGQ5BLJTNHIXZDFANO4ZDCWZMJMVO5ALPLXOQQUEBLGGOUXQ3JYIM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4GFMTEJX105LKEE3XP43XP2MDOPB1MTUBFVWXLONFRFXRXHIPJDC">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">9</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCZ3SWTBLJ1EZG3XKCWQ4HMYAWE5B4EZQRB5ZSGQJ0AYVN4NTIGN">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO14LRAQNLJJXKUE10WBK4TSG05G1JHQB2ERQCCKISYGCEFI50R">Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXNFOISPVXZQJCP0ADDL0TAACHIATIU05NQEIXKN2OJEY4WZO5FKF">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVBKUOGI4B5DCF0F4TFSCGNNGINLO1PRVGDALDBCTLLJFBVKKJ20O">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVG2WIY21WTEGJSVXOJB4FD2RTP30YHQL0J2AX1HZT10F22UDMK4P">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGWANT4VSH5VRFHVEDWSXERR2NJVSAUTQE5YYIVGGQX5Z1L0FBJTN">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">108</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID05NWFKSPU0ZGIRC3IMFEGJXITJUCGLC0TRBU1CI3FOTUARMGVAJM">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">24</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI4OTRALELDH4PYS0PWHOKXDY0EE4ALW4KEQYMGE10SHS1BQM4YJF">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNM1SSLK1KW35JIPPDDMMYQ2CKMWTZUDY1SX5PNITK4HXTELSO55O">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKFWCNGXSIBITIOC0L2OEQQRVGP3KVHJ1WRUX11HPXXU2W2C2BWWF">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">147</td>
+</tr>
+</table><br><a name="ID4GFMTEJX105LKEE3XP43XP2MDOPB1MTUBFVWXLONFRFXRXHIPJDC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1359.911mil|Location2.X=1436.118mil|Location1.Y=1135.553mil|Location2.Y=1623.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1359.911mil|Location2.X=1436.118mil|Location1.Y=1135.553mil|Location2.Y=1623.834mil|Absolute=True">Un-Routed Net Constraint: Net NetNT4_10 Between Pad U3-12(1385.958mil,1593.679mil) on Top Layer And Pad NT4-10(1402.118mil,1169.553mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1352.273mil|Location2.X=1452.962mil|Location1.Y=1266.208mil|Location2.Y=1652.513mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1352.273mil|Location2.X=1452.962mil|Location1.Y=1266.208mil|Location2.Y=1652.513mil|Absolute=True">Un-Routed Net Constraint: Net NetNT4_11 Between Pad NT4-11(1386.273mil,1300.208mil) on Multi-Layer And Pad U3-13(1426.915mil,1622.357mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1398.956mil|Location2.X=1493.92mil|Location1.Y=1389.264mil|Location2.Y=1681.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1398.956mil|Location2.X=1493.92mil|Location1.Y=1389.264mil|Location2.Y=1681.192mil|Absolute=True">Un-Routed Net Constraint: Net NetNT4_12 Between Pad NT4-12(1432.956mil,1423.264mil) on Multi-Layer And Pad U3-14(1467.873mil,1651.036mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.996mil|Location2.X=1627.387mil|Location1.Y=966.034mil|Location2.Y=1566.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.996mil|Location2.X=1627.387mil|Location1.Y=966.034mil|Location2.Y=1566.477mil|Absolute=True">Un-Routed Net Constraint: Net NetNT4_8 Between Pad U3-10(1304.042mil,1536.321mil) on Top Layer And Pad NT4-8(1593.387mil,1000.034mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1318.953mil|Location2.X=1510.863mil|Location1.Y=1027.224mil|Location2.Y=1595.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1318.953mil|Location2.X=1510.863mil|Location1.Y=1027.224mil|Location2.Y=1595.156mil|Absolute=True">Un-Routed Net Constraint: Net NetNT4_9 Between Pad U3-11(1345mil,1565mil) on Top Layer And Pad NT4-9(1476.863mil,1061.224mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=3589.488mil|Location1.Y=1853.858mil|Location2.Y=2730mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=3589.488mil|Location1.Y=1853.858mil|Location2.Y=2730mil|Absolute=True">Un-Routed Net Constraint: Track (3584.488mil,1858.858mil)(3584.488mil,2725mil) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=4495mil|Location1.Y=1853.858mil|Location2.Y=1863.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=4495mil|Location1.Y=1853.858mil|Location2.Y=1863.858mil|Absolute=True">Un-Routed Net Constraint: Track (3584.488mil,1858.858mil)(4490mil,1858.858mil) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=4495mil|Location1.Y=2720mil|Location2.Y=2730mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3579.488mil|Location2.X=4495mil|Location1.Y=2720mil|Location2.Y=2730mil|Absolute=True">Un-Routed Net Constraint: Track (3584.488mil,2725mil)(4490mil,2725mil) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4485mil|Location2.X=4495mil|Location1.Y=1853.858mil|Location2.Y=2730mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4485mil|Location2.X=4495mil|Location1.Y=1853.858mil|Location2.Y=2730mil|Absolute=True">Un-Routed Net Constraint: Track (4490mil,1858.858mil)(4490mil,2725mil) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVG2WIY21WTEGJSVXOJB4FD2RTP30YHQL0J2AX1HZT10F22UDMK4P"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7229.047mil|Location2.X=7236.714mil|Location1.Y=1145.104mil|Location2.Y=1152.77mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7229.047mil|Location2.X=7236.714mil|Location1.Y=1145.104mil|Location2.Y=1152.77mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 10mil) Between Pad J1-13(7232.88mil,1148.937mil) on Multi-Layer And Pad J1-19(7232.88mil,1148.937mil) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7569.207mil|Location2.X=7576.874mil|Location1.Y=1145.104mil|Location2.Y=1152.77mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7569.207mil|Location2.X=7576.874mil|Location1.Y=1145.104mil|Location2.Y=1152.77mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 10mil) Between Pad J1-14(7573.04mil,1148.937mil) on Multi-Layer And Pad J1-21(7573.04mil,1148.937mil) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7229.047mil|Location2.X=7236.714mil|Location1.Y=980.537mil|Location2.Y=988.203mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7229.047mil|Location2.X=7236.714mil|Location1.Y=980.537mil|Location2.Y=988.203mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 10mil) Between Pad J1-15(7232.88mil,984.37mil) on Multi-Layer And Pad J1-23(7232.88mil,984.37mil) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7569.206mil|Location2.X=7576.873mil|Location1.Y=980.537mil|Location2.Y=988.203mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7569.206mil|Location2.X=7576.873mil|Location1.Y=980.537mil|Location2.Y=988.203mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 10mil) Between Pad J1-16(7573.039mil,984.37mil) on Multi-Layer And Pad J1-25(7573.039mil,984.37mil) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGWANT4VSH5VRFHVEDWSXERR2NJVSAUTQE5YYIVGGQX5Z1L0FBJTN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5293.461mil|Location2.X=5304.711mil|Location1.Y=2174.768mil|Location2.Y=2186.018mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5293.461mil|Location2.X=5304.711mil|Location1.Y=2174.768mil|Location2.Y=2186.018mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-1(5314.661mil,2206.198mil) on Top Layer And Pad U1-2(5327.307mil,2188.138mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5395.079mil|Location2.X=5406.329mil|Location1.Y=2029.643mil|Location2.Y=2040.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5395.079mil|Location2.X=5406.329mil|Location1.Y=2029.643mil|Location2.Y=2040.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-10(5417.634mil,2059.137mil) on Top Layer And Pad U1-11(5428.925mil,2043.012mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5383.788mil|Location2.X=5395.038mil|Location1.Y=2045.768mil|Location2.Y=2057.018mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5383.788mil|Location2.X=5395.038mil|Location1.Y=2045.768mil|Location2.Y=2057.018mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-10(5417.634mil,2059.137mil) on Top Layer And Pad U1-9(5406.343mil,2075.262mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5406.37mil|Location2.X=5417.62mil|Location1.Y=2013.518mil|Location2.Y=2024.768mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5406.37mil|Location2.X=5417.62mil|Location1.Y=2013.518mil|Location2.Y=2024.768mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-11(5428.925mil,2043.012mil) on Top Layer And Pad U1-12(5440.216mil,2026.887mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5417.661mil|Location2.X=5428.911mil|Location1.Y=1997.393mil|Location2.Y=2008.643mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5417.661mil|Location2.X=5428.911mil|Location1.Y=1997.393mil|Location2.Y=2008.643mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-12(5440.216mil,2026.887mil) on Top Layer And Pad U1-13(5451.506mil,2010.762mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5428.952mil|Location2.X=5440.202mil|Location1.Y=1981.267mil|Location2.Y=1992.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5428.952mil|Location2.X=5440.202mil|Location1.Y=1981.267mil|Location2.Y=1992.517mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-13(5451.506mil,2010.762mil) on Top Layer And Pad U1-14(5462.797mil,1994.637mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5440.243mil|Location2.X=5451.493mil|Location1.Y=1965.142mil|Location2.Y=1976.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5440.243mil|Location2.X=5451.493mil|Location1.Y=1965.142mil|Location2.Y=1976.392mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-14(5462.797mil,1994.637mil) on Top Layer And Pad U1-15(5474.088mil,1978.512mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5451.534mil|Location2.X=5462.784mil|Location1.Y=1949.017mil|Location2.Y=1960.267mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5451.534mil|Location2.X=5462.784mil|Location1.Y=1949.017mil|Location2.Y=1960.267mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-15(5474.088mil,1978.512mil) on Top Layer And Pad U1-16(5485.379mil,1962.387mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.824mil|Location2.X=5474.074mil|Location1.Y=1932.892mil|Location2.Y=1944.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.824mil|Location2.X=5474.074mil|Location1.Y=1932.892mil|Location2.Y=1944.142mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-16(5485.379mil,1962.387mil) on Top Layer And Pad U1-17(5496.67mil,1946.262mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5474.115mil|Location2.X=5485.365mil|Location1.Y=1916.767mil|Location2.Y=1928.017mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5474.115mil|Location2.X=5485.365mil|Location1.Y=1916.767mil|Location2.Y=1928.017mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-17(5496.67mil,1946.262mil) on Top Layer And Pad U1-18(5507.961mil,1930.137mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5485.406mil|Location2.X=5496.656mil|Location1.Y=1900.642mil|Location2.Y=1911.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5485.406mil|Location2.X=5496.656mil|Location1.Y=1900.642mil|Location2.Y=1911.892mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-18(5507.961mil,1930.137mil) on Top Layer And Pad U1-19(5519.252mil,1914.012mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.697mil|Location2.X=5507.947mil|Location1.Y=1884.517mil|Location2.Y=1895.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.697mil|Location2.X=5507.947mil|Location1.Y=1884.517mil|Location2.Y=1895.767mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-19(5519.252mil,1914.012mil) on Top Layer And Pad U1-20(5530.542mil,1897.887mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5304.752mil|Location2.X=5316.002mil|Location1.Y=2158.643mil|Location2.Y=2169.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5304.752mil|Location2.X=5316.002mil|Location1.Y=2158.643mil|Location2.Y=2169.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-2(5327.307mil,2188.138mil) on Top Layer And Pad U1-3(5338.598mil,2172.013mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.988mil|Location2.X=5519.238mil|Location1.Y=1868.392mil|Location2.Y=1879.642mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.988mil|Location2.X=5519.238mil|Location1.Y=1868.392mil|Location2.Y=1879.642mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-20(5530.542mil,1897.887mil) on Top Layer And Pad U1-21(5541.833mil,1881.762mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5519.279mil|Location2.X=5530.529mil|Location1.Y=1852.267mil|Location2.Y=1863.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5519.279mil|Location2.X=5530.529mil|Location1.Y=1852.267mil|Location2.Y=1863.517mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-21(5541.833mil,1881.762mil) on Top Layer And Pad U1-22(5553.124mil,1865.637mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5530.57mil|Location2.X=5541.82mil|Location1.Y=1836.142mil|Location2.Y=1847.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5530.57mil|Location2.X=5541.82mil|Location1.Y=1836.142mil|Location2.Y=1847.392mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-22(5553.124mil,1865.637mil) on Top Layer And Pad U1-23(5564.415mil,1849.512mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5541.861mil|Location2.X=5553.111mil|Location1.Y=1820.017mil|Location2.Y=1831.267mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5541.861mil|Location2.X=5553.111mil|Location1.Y=1820.017mil|Location2.Y=1831.267mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-23(5564.415mil,1849.512mil) on Top Layer And Pad U1-24(5575.706mil,1833.387mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5553.151mil|Location2.X=5564.401mil|Location1.Y=1803.892mil|Location2.Y=1815.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5553.151mil|Location2.X=5564.401mil|Location1.Y=1803.892mil|Location2.Y=1815.142mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-24(5575.706mil,1833.387mil) on Top Layer And Pad U1-25(5586.997mil,1817.262mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5564.442mil|Location2.X=5575.692mil|Location1.Y=1787.767mil|Location2.Y=1799.017mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5564.442mil|Location2.X=5575.692mil|Location1.Y=1787.767mil|Location2.Y=1799.017mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-25(5586.997mil,1817.262mil) on Top Layer And Pad U1-26(5598.288mil,1801.137mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5575.733mil|Location2.X=5586.983mil|Location1.Y=1771.642mil|Location2.Y=1782.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5575.733mil|Location2.X=5586.983mil|Location1.Y=1771.642mil|Location2.Y=1782.892mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-26(5598.288mil,1801.137mil) on Top Layer And Pad U1-27(5609.579mil,1785.012mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5587.024mil|Location2.X=5598.274mil|Location1.Y=1755.517mil|Location2.Y=1766.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5587.024mil|Location2.X=5598.274mil|Location1.Y=1755.517mil|Location2.Y=1766.767mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-27(5609.579mil,1785.012mil) on Top Layer And Pad U1-28(5622.225mil,1766.952mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5828.9mil|Location2.X=5840.15mil|Location1.Y=1924.88mil|Location2.Y=1936.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5828.9mil|Location2.X=5840.15mil|Location1.Y=1924.88mil|Location2.Y=1936.13mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-29(5864.1mil,1936.315mil) on Top Layer And Pad U1-30(5851.454mil,1954.375mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5316.043mil|Location2.X=5327.293mil|Location1.Y=2142.518mil|Location2.Y=2153.768mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5316.043mil|Location2.X=5327.293mil|Location1.Y=2142.518mil|Location2.Y=2153.768mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-3(5338.598mil,2172.013mil) on Top Layer And Pad U1-4(5349.889mil,2155.888mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5817.609mil|Location2.X=5828.859mil|Location1.Y=1941.005mil|Location2.Y=1952.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5817.609mil|Location2.X=5828.859mil|Location1.Y=1941.005mil|Location2.Y=1952.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-30(5851.454mil,1954.375mil) on Top Layer And Pad U1-31(5840.163mil,1970.5mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5806.318mil|Location2.X=5817.568mil|Location1.Y=1957.13mil|Location2.Y=1968.38mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5806.318mil|Location2.X=5817.568mil|Location1.Y=1957.13mil|Location2.Y=1968.38mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-31(5840.163mil,1970.5mil) on Top Layer And Pad U1-32(5828.873mil,1986.625mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795.027mil|Location2.X=5806.277mil|Location1.Y=1973.255mil|Location2.Y=1984.505mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795.027mil|Location2.X=5806.277mil|Location1.Y=1973.255mil|Location2.Y=1984.505mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-32(5828.873mil,1986.625mil) on Top Layer And Pad U1-33(5817.582mil,2002.75mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5783.736mil|Location2.X=5794.986mil|Location1.Y=1989.38mil|Location2.Y=2000.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5783.736mil|Location2.X=5794.986mil|Location1.Y=1989.38mil|Location2.Y=2000.63mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-33(5817.582mil,2002.75mil) on Top Layer And Pad U1-34(5806.291mil,2018.875mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5772.445mil|Location2.X=5783.695mil|Location1.Y=2005.505mil|Location2.Y=2016.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5772.445mil|Location2.X=5783.695mil|Location1.Y=2005.505mil|Location2.Y=2016.755mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-34(5806.291mil,2018.875mil) on Top Layer And Pad U1-35(5795mil,2035mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5761.154mil|Location2.X=5772.404mil|Location1.Y=2021.63mil|Location2.Y=2032.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5761.154mil|Location2.X=5772.404mil|Location1.Y=2021.63mil|Location2.Y=2032.88mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-35(5795mil,2035mil) on Top Layer And Pad U1-36(5783.709mil,2051.125mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5749.864mil|Location2.X=5761.114mil|Location1.Y=2037.755mil|Location2.Y=2049.005mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5749.864mil|Location2.X=5761.114mil|Location1.Y=2037.755mil|Location2.Y=2049.005mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-36(5783.709mil,2051.125mil) on Top Layer And Pad U1-37(5772.418mil,2067.25mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5738.573mil|Location2.X=5749.823mil|Location1.Y=2053.881mil|Location2.Y=2065.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5738.573mil|Location2.X=5749.823mil|Location1.Y=2053.881mil|Location2.Y=2065.131mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-37(5772.418mil,2067.25mil) on Top Layer And Pad U1-38(5761.127mil,2083.375mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5727.282mil|Location2.X=5738.532mil|Location1.Y=2070.006mil|Location2.Y=2081.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5727.282mil|Location2.X=5738.532mil|Location1.Y=2070.006mil|Location2.Y=2081.256mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-38(5761.127mil,2083.375mil) on Top Layer And Pad U1-39(5749.837mil,2099.5mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5715.991mil|Location2.X=5727.241mil|Location1.Y=2086.131mil|Location2.Y=2097.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5715.991mil|Location2.X=5727.241mil|Location1.Y=2086.131mil|Location2.Y=2097.381mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-39(5749.837mil,2099.5mil) on Top Layer And Pad U1-40(5738.546mil,2115.625mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5327.334mil|Location2.X=5338.584mil|Location1.Y=2126.393mil|Location2.Y=2137.643mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5327.334mil|Location2.X=5338.584mil|Location1.Y=2126.393mil|Location2.Y=2137.643mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-4(5349.889mil,2155.888mil) on Top Layer And Pad U1-5(5361.179mil,2139.763mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.7mil|Location2.X=5715.95mil|Location1.Y=2102.256mil|Location2.Y=2113.506mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.7mil|Location2.X=5715.95mil|Location1.Y=2102.256mil|Location2.Y=2113.506mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-40(5738.546mil,2115.625mil) on Top Layer And Pad U1-41(5727.255mil,2131.75mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5693.409mil|Location2.X=5704.659mil|Location1.Y=2118.381mil|Location2.Y=2129.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5693.409mil|Location2.X=5704.659mil|Location1.Y=2118.381mil|Location2.Y=2129.631mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-41(5727.255mil,2131.75mil) on Top Layer And Pad U1-42(5715.964mil,2147.875mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5682.118mil|Location2.X=5693.368mil|Location1.Y=2134.506mil|Location2.Y=2145.756mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5682.118mil|Location2.X=5693.368mil|Location1.Y=2134.506mil|Location2.Y=2145.756mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-42(5715.964mil,2147.875mil) on Top Layer And Pad U1-43(5704.673mil,2164mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5670.828mil|Location2.X=5682.078mil|Location1.Y=2150.631mil|Location2.Y=2161.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5670.828mil|Location2.X=5682.078mil|Location1.Y=2150.631mil|Location2.Y=2161.881mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-43(5704.673mil,2164mil) on Top Layer And Pad U1-44(5693.382mil,2180.125mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5659.537mil|Location2.X=5670.787mil|Location1.Y=2166.756mil|Location2.Y=2178.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5659.537mil|Location2.X=5670.787mil|Location1.Y=2166.756mil|Location2.Y=2178.006mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-44(5693.382mil,2180.125mil) on Top Layer And Pad U1-45(5682.091mil,2196.251mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5648.246mil|Location2.X=5659.496mil|Location1.Y=2182.881mil|Location2.Y=2194.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5648.246mil|Location2.X=5659.496mil|Location1.Y=2182.881mil|Location2.Y=2194.131mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-45(5682.091mil,2196.251mil) on Top Layer And Pad U1-46(5670.8mil,2212.375mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5636.955mil|Location2.X=5648.205mil|Location1.Y=2199.006mil|Location2.Y=2210.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5636.955mil|Location2.X=5648.205mil|Location1.Y=2199.006mil|Location2.Y=2210.256mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-46(5670.8mil,2212.375mil) on Top Layer And Pad U1-47(5659.51mil,2228.501mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5625.664mil|Location2.X=5636.914mil|Location1.Y=2215.131mil|Location2.Y=2226.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5625.664mil|Location2.X=5636.914mil|Location1.Y=2215.131mil|Location2.Y=2226.381mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-47(5659.51mil,2228.501mil) on Top Layer And Pad U1-48(5648.219mil,2244.626mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5614.373mil|Location2.X=5625.623mil|Location1.Y=2231.256mil|Location2.Y=2242.506mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5614.373mil|Location2.X=5625.623mil|Location1.Y=2231.256mil|Location2.Y=2242.506mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-48(5648.219mil,2244.626mil) on Top Layer And Pad U1-49(5636.928mil,2260.751mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5603.082mil|Location2.X=5614.332mil|Location1.Y=2247.381mil|Location2.Y=2258.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5603.082mil|Location2.X=5614.332mil|Location1.Y=2247.381mil|Location2.Y=2258.631mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-49(5636.928mil,2260.751mil) on Top Layer And Pad U1-50(5625.637mil,2276.876mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5338.625mil|Location2.X=5349.875mil|Location1.Y=2110.268mil|Location2.Y=2121.518mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5338.625mil|Location2.X=5349.875mil|Location1.Y=2110.268mil|Location2.Y=2121.518mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-5(5361.179mil,2139.763mil) on Top Layer And Pad U1-6(5372.47mil,2123.637mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5591.791mil|Location2.X=5603.041mil|Location1.Y=2263.506mil|Location2.Y=2274.756mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5591.791mil|Location2.X=5603.041mil|Location1.Y=2263.506mil|Location2.Y=2274.756mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-50(5625.637mil,2276.876mil) on Top Layer And Pad U1-51(5614.346mil,2293.001mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5580.5mil|Location2.X=5591.75mil|Location1.Y=2279.631mil|Location2.Y=2290.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5580.5mil|Location2.X=5591.75mil|Location1.Y=2279.631mil|Location2.Y=2290.881mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-51(5614.346mil,2293.001mil) on Top Layer And Pad U1-52(5603.055mil,2309.126mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5569.21mil|Location2.X=5580.46mil|Location1.Y=2295.756mil|Location2.Y=2307.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5569.21mil|Location2.X=5580.46mil|Location1.Y=2295.756mil|Location2.Y=2307.006mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-52(5603.055mil,2309.126mil) on Top Layer And Pad U1-53(5591.764mil,2325.251mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5557.919mil|Location2.X=5569.169mil|Location1.Y=2311.881mil|Location2.Y=2323.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5557.919mil|Location2.X=5569.169mil|Location1.Y=2311.881mil|Location2.Y=2323.131mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-53(5591.764mil,2325.251mil) on Top Layer And Pad U1-54(5580.473mil,2341.376mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5546.628mil|Location2.X=5557.878mil|Location1.Y=2328.006mil|Location2.Y=2339.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5546.628mil|Location2.X=5557.878mil|Location1.Y=2328.006mil|Location2.Y=2339.256mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-54(5580.473mil,2341.376mil) on Top Layer And Pad U1-55(5569.182mil,2357.501mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5535.337mil|Location2.X=5546.587mil|Location1.Y=2344.131mil|Location2.Y=2355.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5535.337mil|Location2.X=5546.587mil|Location1.Y=2344.131mil|Location2.Y=2355.381mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-55(5569.182mil,2357.501mil) on Top Layer And Pad U1-56(5556.537mil,2375.561mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.916mil|Location2.X=5361.166mil|Location1.Y=2094.143mil|Location2.Y=2105.393mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.916mil|Location2.X=5361.166mil|Location1.Y=2094.143mil|Location2.Y=2105.393mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-6(5372.47mil,2123.637mil) on Top Layer And Pad U1-7(5383.761mil,2107.513mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5361.207mil|Location2.X=5372.457mil|Location1.Y=2078.018mil|Location2.Y=2089.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5361.207mil|Location2.X=5372.457mil|Location1.Y=2078.018mil|Location2.Y=2089.268mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U1-7(5383.761mil,2107.513mil) on Top Layer And Pad U1-8(5395.052mil,2091.387mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5372.497mil|Location2.X=5383.747mil|Location1.Y=2061.893mil|Location2.Y=2073.143mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5372.497mil|Location2.X=5383.747mil|Location1.Y=2061.893mil|Location2.Y=2073.143mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U1-8(5395.052mil,2091.387mil) on Top Layer And Pad U1-9(5406.343mil,2075.262mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2543.426mil|Location2.X=2554.676mil|Location1.Y=2370.246mil|Location2.Y=2381.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2543.426mil|Location2.X=2554.676mil|Location1.Y=2370.246mil|Location2.Y=2381.496mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-1(2578.627mil,2370.061mil) on Top Layer And Pad U2-2(2565.981mil,2352.001mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.809mil|Location2.X=2453.059mil|Location1.Y=2225.12mil|Location2.Y=2236.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.809mil|Location2.X=2453.059mil|Location1.Y=2225.12mil|Location2.Y=2236.37mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-10(2475.654mil,2223.001mil) on Top Layer And Pad U2-11(2464.363mil,2206.876mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2453.099mil|Location2.X=2464.349mil|Location1.Y=2241.245mil|Location2.Y=2252.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2453.099mil|Location2.X=2464.349mil|Location1.Y=2241.245mil|Location2.Y=2252.495mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-10(2475.654mil,2223.001mil) on Top Layer And Pad U2-9(2486.945mil,2239.126mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2430.518mil|Location2.X=2441.768mil|Location1.Y=2208.995mil|Location2.Y=2220.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2430.518mil|Location2.X=2441.768mil|Location1.Y=2208.995mil|Location2.Y=2220.245mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-11(2464.363mil,2206.876mil) on Top Layer And Pad U2-12(2453.072mil,2190.751mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2419.227mil|Location2.X=2430.477mil|Location1.Y=2192.87mil|Location2.Y=2204.12mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2419.227mil|Location2.X=2430.477mil|Location1.Y=2192.87mil|Location2.Y=2204.12mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-12(2453.072mil,2190.751mil) on Top Layer And Pad U2-13(2441.781mil,2174.626mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2407.936mil|Location2.X=2419.186mil|Location1.Y=2176.745mil|Location2.Y=2187.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2407.936mil|Location2.X=2419.186mil|Location1.Y=2176.745mil|Location2.Y=2187.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-13(2441.781mil,2174.626mil) on Top Layer And Pad U2-14(2430.49mil,2158.501mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2396.645mil|Location2.X=2407.895mil|Location1.Y=2160.62mil|Location2.Y=2171.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2396.645mil|Location2.X=2407.895mil|Location1.Y=2160.62mil|Location2.Y=2171.87mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-14(2430.49mil,2158.501mil) on Top Layer And Pad U2-15(2419.2mil,2142.376mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.354mil|Location2.X=2396.604mil|Location1.Y=2144.495mil|Location2.Y=2155.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.354mil|Location2.X=2396.604mil|Location1.Y=2144.495mil|Location2.Y=2155.745mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-15(2419.2mil,2142.376mil) on Top Layer And Pad U2-16(2407.909mil,2126.25mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.063mil|Location2.X=2385.313mil|Location1.Y=2128.37mil|Location2.Y=2139.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.063mil|Location2.X=2385.313mil|Location1.Y=2128.37mil|Location2.Y=2139.62mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-16(2407.909mil,2126.25mil) on Top Layer And Pad U2-17(2396.618mil,2110.125mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.772mil|Location2.X=2374.022mil|Location1.Y=2112.245mil|Location2.Y=2123.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.772mil|Location2.X=2374.022mil|Location1.Y=2112.245mil|Location2.Y=2123.495mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-17(2396.618mil,2110.125mil) on Top Layer And Pad U2-18(2385.327mil,2094mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.482mil|Location2.X=2362.732mil|Location1.Y=2096.12mil|Location2.Y=2107.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.482mil|Location2.X=2362.732mil|Location1.Y=2096.12mil|Location2.Y=2107.37mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-18(2385.327mil,2094mil) on Top Layer And Pad U2-19(2374.036mil,2077.875mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340.191mil|Location2.X=2351.441mil|Location1.Y=2079.995mil|Location2.Y=2091.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340.191mil|Location2.X=2351.441mil|Location1.Y=2079.995mil|Location2.Y=2091.245mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-19(2374.036mil,2077.875mil) on Top Layer And Pad U2-20(2362.745mil,2061.75mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2532.135mil|Location2.X=2543.385mil|Location1.Y=2354.121mil|Location2.Y=2365.371mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2532.135mil|Location2.X=2543.385mil|Location1.Y=2354.121mil|Location2.Y=2365.371mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-2(2565.981mil,2352.001mil) on Top Layer And Pad U2-3(2554.69mil,2335.876mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2328.9mil|Location2.X=2340.15mil|Location1.Y=2063.87mil|Location2.Y=2075.12mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2328.9mil|Location2.X=2340.15mil|Location1.Y=2063.87mil|Location2.Y=2075.12mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-20(2362.745mil,2061.75mil) on Top Layer And Pad U2-21(2351.454mil,2045.625mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.609mil|Location2.X=2328.859mil|Location1.Y=2047.745mil|Location2.Y=2058.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.609mil|Location2.X=2328.859mil|Location1.Y=2047.745mil|Location2.Y=2058.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-21(2351.454mil,2045.625mil) on Top Layer And Pad U2-22(2340.164mil,2029.5mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2306.318mil|Location2.X=2317.568mil|Location1.Y=2031.62mil|Location2.Y=2042.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2306.318mil|Location2.X=2317.568mil|Location1.Y=2031.62mil|Location2.Y=2042.87mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-22(2340.164mil,2029.5mil) on Top Layer And Pad U2-23(2328.873mil,2013.375mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2295.027mil|Location2.X=2306.277mil|Location1.Y=2015.495mil|Location2.Y=2026.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2295.027mil|Location2.X=2306.277mil|Location1.Y=2015.495mil|Location2.Y=2026.745mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-23(2328.873mil,2013.375mil) on Top Layer And Pad U2-24(2317.582mil,1997.25mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2283.736mil|Location2.X=2294.986mil|Location1.Y=1999.37mil|Location2.Y=2010.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2283.736mil|Location2.X=2294.986mil|Location1.Y=1999.37mil|Location2.Y=2010.62mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-24(2317.582mil,1997.25mil) on Top Layer And Pad U2-25(2306.291mil,1981.125mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2272.445mil|Location2.X=2283.695mil|Location1.Y=1983.245mil|Location2.Y=1994.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2272.445mil|Location2.X=2283.695mil|Location1.Y=1983.245mil|Location2.Y=1994.495mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-25(2306.291mil,1981.125mil) on Top Layer And Pad U2-26(2295mil,1965mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261.155mil|Location2.X=2272.405mil|Location1.Y=1967.12mil|Location2.Y=1978.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261.155mil|Location2.X=2272.405mil|Location1.Y=1967.12mil|Location2.Y=1978.37mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-26(2295mil,1965mil) on Top Layer And Pad U2-27(2283.709mil,1948.875mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2249.864mil|Location2.X=2261.114mil|Location1.Y=1950.995mil|Location2.Y=1962.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2249.864mil|Location2.X=2261.114mil|Location1.Y=1950.995mil|Location2.Y=1962.245mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-27(2283.709mil,1948.875mil) on Top Layer And Pad U2-28(2271.063mil,1930.815mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.739mil|Location2.X=2502.989mil|Location1.Y=1781.631mil|Location2.Y=1792.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.739mil|Location2.X=2502.989mil|Location1.Y=1781.631mil|Location2.Y=1792.881mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-29(2512.939mil,1761.452mil) on Top Layer And Pad U2-30(2525.585mil,1779.512mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2520.845mil|Location2.X=2532.095mil|Location1.Y=2337.995mil|Location2.Y=2349.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2520.845mil|Location2.X=2532.095mil|Location1.Y=2337.995mil|Location2.Y=2349.245mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-3(2554.69mil,2335.876mil) on Top Layer And Pad U2-4(2543.399mil,2319.751mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2503.03mil|Location2.X=2514.28mil|Location1.Y=1797.756mil|Location2.Y=1809.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2503.03mil|Location2.X=2514.28mil|Location1.Y=1797.756mil|Location2.Y=1809.006mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-30(2525.585mil,1779.512mil) on Top Layer And Pad U2-31(2536.876mil,1795.637mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2514.321mil|Location2.X=2525.571mil|Location1.Y=1813.881mil|Location2.Y=1825.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2514.321mil|Location2.X=2525.571mil|Location1.Y=1813.881mil|Location2.Y=1825.131mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-31(2536.876mil,1795.637mil) on Top Layer And Pad U2-32(2548.166mil,1811.762mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.612mil|Location2.X=2536.862mil|Location1.Y=1830.007mil|Location2.Y=1841.257mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.612mil|Location2.X=2536.862mil|Location1.Y=1830.007mil|Location2.Y=1841.257mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-32(2548.166mil,1811.762mil) on Top Layer And Pad U2-33(2559.457mil,1827.887mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.903mil|Location2.X=2548.153mil|Location1.Y=1846.132mil|Location2.Y=1857.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.903mil|Location2.X=2548.153mil|Location1.Y=1846.132mil|Location2.Y=1857.382mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-33(2559.457mil,1827.887mil) on Top Layer And Pad U2-34(2570.748mil,1844.012mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2548.194mil|Location2.X=2559.444mil|Location1.Y=1862.257mil|Location2.Y=1873.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2548.194mil|Location2.X=2559.444mil|Location1.Y=1862.257mil|Location2.Y=1873.507mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-34(2570.748mil,1844.012mil) on Top Layer And Pad U2-35(2582.039mil,1860.137mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2559.485mil|Location2.X=2570.735mil|Location1.Y=1878.382mil|Location2.Y=1889.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2559.485mil|Location2.X=2570.735mil|Location1.Y=1878.382mil|Location2.Y=1889.632mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-35(2582.039mil,1860.137mil) on Top Layer And Pad U2-36(2593.33mil,1876.262mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.775mil|Location2.X=2582.025mil|Location1.Y=1894.507mil|Location2.Y=1905.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.775mil|Location2.X=2582.025mil|Location1.Y=1894.507mil|Location2.Y=1905.757mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-36(2593.33mil,1876.262mil) on Top Layer And Pad U2-37(2604.621mil,1892.387mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2582.066mil|Location2.X=2593.316mil|Location1.Y=1910.632mil|Location2.Y=1921.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2582.066mil|Location2.X=2593.316mil|Location1.Y=1910.632mil|Location2.Y=1921.882mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-37(2604.621mil,1892.387mil) on Top Layer And Pad U2-38(2615.912mil,1908.512mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2593.357mil|Location2.X=2604.607mil|Location1.Y=1926.757mil|Location2.Y=1938.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2593.357mil|Location2.X=2604.607mil|Location1.Y=1926.757mil|Location2.Y=1938.007mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-38(2615.912mil,1908.512mil) on Top Layer And Pad U2-39(2627.203mil,1924.637mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.648mil|Location2.X=2615.898mil|Location1.Y=1942.882mil|Location2.Y=1954.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.648mil|Location2.X=2615.898mil|Location1.Y=1942.882mil|Location2.Y=1954.132mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-39(2627.203mil,1924.637mil) on Top Layer And Pad U2-40(2638.494mil,1940.762mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.554mil|Location2.X=2520.804mil|Location1.Y=2321.87mil|Location2.Y=2333.12mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.554mil|Location2.X=2520.804mil|Location1.Y=2321.87mil|Location2.Y=2333.12mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-4(2543.399mil,2319.751mil) on Top Layer And Pad U2-5(2532.108mil,2303.626mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2615.939mil|Location2.X=2627.189mil|Location1.Y=1959.007mil|Location2.Y=1970.257mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2615.939mil|Location2.X=2627.189mil|Location1.Y=1959.007mil|Location2.Y=1970.257mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-40(2638.494mil,1940.762mil) on Top Layer And Pad U2-41(2649.784mil,1956.887mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.23mil|Location2.X=2638.48mil|Location1.Y=1975.132mil|Location2.Y=1986.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.23mil|Location2.X=2638.48mil|Location1.Y=1975.132mil|Location2.Y=1986.382mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-41(2649.784mil,1956.887mil) on Top Layer And Pad U2-42(2661.075mil,1973.012mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2638.521mil|Location2.X=2649.771mil|Location1.Y=1991.257mil|Location2.Y=2002.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2638.521mil|Location2.X=2649.771mil|Location1.Y=1991.257mil|Location2.Y=2002.507mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-42(2661.075mil,1973.012mil) on Top Layer And Pad U2-43(2672.366mil,1989.137mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2649.811mil|Location2.X=2661.061mil|Location1.Y=2007.382mil|Location2.Y=2018.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2649.811mil|Location2.X=2661.061mil|Location1.Y=2007.382mil|Location2.Y=2018.632mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-43(2672.366mil,1989.137mil) on Top Layer And Pad U2-44(2683.657mil,2005.263mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2661.102mil|Location2.X=2672.352mil|Location1.Y=2023.507mil|Location2.Y=2034.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2661.102mil|Location2.X=2672.352mil|Location1.Y=2023.507mil|Location2.Y=2034.757mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-44(2683.657mil,2005.263mil) on Top Layer And Pad U2-45(2694.948mil,2021.388mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.393mil|Location2.X=2683.643mil|Location1.Y=2039.632mil|Location2.Y=2050.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.393mil|Location2.X=2683.643mil|Location1.Y=2039.632mil|Location2.Y=2050.882mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-45(2694.948mil,2021.388mil) on Top Layer And Pad U2-46(2706.239mil,2037.513mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.684mil|Location2.X=2694.934mil|Location1.Y=2055.757mil|Location2.Y=2067.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.684mil|Location2.X=2694.934mil|Location1.Y=2055.757mil|Location2.Y=2067.007mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-46(2706.239mil,2037.513mil) on Top Layer And Pad U2-47(2717.53mil,2053.637mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.975mil|Location2.X=2706.225mil|Location1.Y=2071.882mil|Location2.Y=2083.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.975mil|Location2.X=2706.225mil|Location1.Y=2071.882mil|Location2.Y=2083.132mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-47(2717.53mil,2053.637mil) on Top Layer And Pad U2-48(2728.82mil,2069.762mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2706.266mil|Location2.X=2717.516mil|Location1.Y=2088.007mil|Location2.Y=2099.257mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2706.266mil|Location2.X=2717.516mil|Location1.Y=2088.007mil|Location2.Y=2099.257mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-48(2728.82mil,2069.762mil) on Top Layer And Pad U2-49(2740.111mil,2085.888mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2717.557mil|Location2.X=2728.807mil|Location1.Y=2104.132mil|Location2.Y=2115.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2717.557mil|Location2.X=2728.807mil|Location1.Y=2104.132mil|Location2.Y=2115.382mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-49(2740.111mil,2085.888mil) on Top Layer And Pad U2-50(2751.402mil,2102.013mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.263mil|Location2.X=2509.513mil|Location1.Y=2305.745mil|Location2.Y=2316.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.263mil|Location2.X=2509.513mil|Location1.Y=2305.745mil|Location2.Y=2316.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-5(2532.108mil,2303.626mil) on Top Layer And Pad U2-6(2520.818mil,2287.501mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.848mil|Location2.X=2740.098mil|Location1.Y=2120.257mil|Location2.Y=2131.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.848mil|Location2.X=2740.098mil|Location1.Y=2120.257mil|Location2.Y=2131.507mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-50(2751.402mil,2102.013mil) on Top Layer And Pad U2-51(2762.693mil,2118.138mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2740.138mil|Location2.X=2751.388mil|Location1.Y=2136.382mil|Location2.Y=2147.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2740.138mil|Location2.X=2751.388mil|Location1.Y=2136.382mil|Location2.Y=2147.632mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-51(2762.693mil,2118.138mil) on Top Layer And Pad U2-52(2773.984mil,2134.263mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2751.429mil|Location2.X=2762.679mil|Location1.Y=2152.507mil|Location2.Y=2163.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2751.429mil|Location2.X=2762.679mil|Location1.Y=2152.507mil|Location2.Y=2163.757mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-52(2773.984mil,2134.263mil) on Top Layer And Pad U2-53(2785.275mil,2150.388mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.72mil|Location2.X=2773.97mil|Location1.Y=2168.632mil|Location2.Y=2179.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.72mil|Location2.X=2773.97mil|Location1.Y=2168.632mil|Location2.Y=2179.882mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-53(2785.275mil,2150.388mil) on Top Layer And Pad U2-54(2796.566mil,2166.513mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2774.011mil|Location2.X=2785.261mil|Location1.Y=2184.757mil|Location2.Y=2196.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2774.011mil|Location2.X=2785.261mil|Location1.Y=2184.757mil|Location2.Y=2196.007mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-54(2796.566mil,2166.513mil) on Top Layer And Pad U2-55(2807.857mil,2182.638mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.302mil|Location2.X=2796.552mil|Location1.Y=2200.882mil|Location2.Y=2212.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.302mil|Location2.X=2796.552mil|Location1.Y=2200.882mil|Location2.Y=2212.132mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-55(2807.857mil,2182.638mil) on Top Layer And Pad U2-56(2820.502mil,2200.698mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2486.972mil|Location2.X=2498.222mil|Location1.Y=2289.62mil|Location2.Y=2300.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2486.972mil|Location2.X=2498.222mil|Location1.Y=2289.62mil|Location2.Y=2300.87mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-6(2520.818mil,2287.501mil) on Top Layer And Pad U2-7(2509.527mil,2271.376mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2475.681mil|Location2.X=2486.931mil|Location1.Y=2273.495mil|Location2.Y=2284.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2475.681mil|Location2.X=2486.931mil|Location1.Y=2273.495mil|Location2.Y=2284.745mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.661mil &lt; 10mil) Between Pad U2-7(2509.527mil,2271.376mil) on Top Layer And Pad U2-8(2498.236mil,2255.251mil) on Top Layer [Top Solder] Mask Sliver [8.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2464.39mil|Location2.X=2475.64mil|Location1.Y=2257.37mil|Location2.Y=2268.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2464.39mil|Location2.X=2475.64mil|Location1.Y=2257.37mil|Location2.Y=2268.62mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.662mil &lt; 10mil) Between Pad U2-8(2498.236mil,2255.251mil) on Top Layer And Pad U2-9(2486.945mil,2239.126mil) on Top Layer [Top Solder] Mask Sliver [8.662mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID05NWFKSPU0ZGIRC3IMFEGJXITJUCGLC0TRBU1CI3FOTUARMGVAJM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6329.24mil|Location2.X=6340.49mil|Location1.Y=1929.926mil|Location2.Y=1941.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6329.24mil|Location2.X=6340.49mil|Location1.Y=1929.926mil|Location2.Y=1941.176mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U10-1(6320mil,1952.284mil) on Top Layer And Track (6341.85mil,1809.567mil)(6341.85mil,1974.921mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6121.167mil|Location2.X=6128.833mil|Location1.Y=1705.335mil|Location2.Y=1713.001mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6121.167mil|Location2.X=6128.833mil|Location1.Y=1705.335mil|Location2.Y=1713.001mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U10-12(6120mil,1737.717mil) on Top Layer And Text "NT2" (6125mil,1665mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6161.154mil|Location2.X=6168.82mil|Location1.Y=1705.356mil|Location2.Y=1713.023mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6161.154mil|Location2.X=6168.82mil|Location1.Y=1705.356mil|Location2.Y=1713.023mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U10-13(6170mil,1737.717mil) on Top Layer And Text "NT2" (6125mil,1665mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6204.35mil|Location2.X=6212.017mil|Location1.Y=1721.147mil|Location2.Y=1728.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6204.35mil|Location2.X=6212.017mil|Location1.Y=1721.147mil|Location2.Y=1728.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U10-14(6220mil,1737.717mil) on Top Layer And Text "NT2" (6125mil,1665mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6281.115mil|Location2.X=6288.782mil|Location1.Y=1711.038mil|Location2.Y=1718.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6281.115mil|Location2.X=6288.782mil|Location1.Y=1711.038mil|Location2.Y=1718.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U10-15(6270mil,1737.717mil) on Top Layer And Text "NT2" (6125mil,1665mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7026.036mil|Location2.X=7037.286mil|Location1.Y=1687.061mil|Location2.Y=1698.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7026.036mil|Location2.X=7037.286mil|Location1.Y=1687.061mil|Location2.Y=1698.311mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U11-1(7009.887mil,1687.506mil) on Top Layer And Track (6945.927mil,1558.066mil)(7040.77mil,1693.516mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.971mil|Location2.X=2621.221mil|Location1.Y=1958.943mil|Location2.Y=1970.193mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.971mil|Location2.X=2621.221mil|Location1.Y=1958.943mil|Location2.Y=1970.193mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.853mil &lt; 10mil) Between Pad U2-40(2638.494mil,1940.762mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.853mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.144mil|Location2.X=2649.811mil|Location1.Y=1965.167mil|Location2.Y=1972.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.144mil|Location2.X=2649.811mil|Location1.Y=1965.167mil|Location2.Y=1972.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U2-41(2649.784mil,1956.887mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2666.439mil|Location2.X=2674.105mil|Location1.Y=1969.468mil|Location2.Y=1977.134mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2666.439mil|Location2.X=2674.105mil|Location1.Y=1969.468mil|Location2.Y=1977.134mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U2-42(2661.075mil,1973.012mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2641.242mil|Location2.X=2648.909mil|Location1.Y=1999.704mil|Location2.Y=2007.371mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2641.242mil|Location2.X=2648.909mil|Location1.Y=1999.704mil|Location2.Y=2007.371mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U2-43(2672.366mil,1989.137mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.41mil|Location2.X=2668.077mil|Location1.Y=2025.147mil|Location2.Y=2032.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.41mil|Location2.X=2668.077mil|Location1.Y=2025.147mil|Location2.Y=2032.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U2-44(2683.657mil,2005.263mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.134mil|Location2.X=2679.801mil|Location1.Y=2025.147mil|Location2.Y=2032.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.134mil|Location2.X=2679.801mil|Location1.Y=2025.147mil|Location2.Y=2032.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U2-45(2694.948mil,2021.388mil) on Top Layer And Text "U5" (2576mil,1969mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.866mil|Location2.X=1454.116mil|Location1.Y=1873.352mil|Location2.Y=1884.602mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.866mil|Location2.X=1454.116mil|Location1.Y=1873.352mil|Location2.Y=1884.602mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U3-1(1426.717mil,1884.157mil) on Top Layer And Track (1431.632mil,1915.234mil)(1526.475mil,1779.783mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1456.118mil|Location2.X=1463.785mil|Location1.Y=1651.167mil|Location2.Y=1658.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1456.118mil|Location2.X=1463.785mil|Location1.Y=1651.167mil|Location2.Y=1658.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U3-14(1467.873mil,1651.036mil) on Top Layer And Text "NT4" (1310mil,1655mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2164.24mil|Location2.X=2175.49mil|Location1.Y=1932.643mil|Location2.Y=1943.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2164.24mil|Location2.X=2175.49mil|Location1.Y=1932.643mil|Location2.Y=1943.893mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U4-1(2155mil,1955mil) on Top Layer And Track (2176.85mil,1812.283mil)(2176.85mil,1977.638mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2156.167mil|Location2.X=2163.833mil|Location1.Y=1708.051mil|Location2.Y=1715.718mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2156.167mil|Location2.X=2163.833mil|Location1.Y=1708.051mil|Location2.Y=1715.718mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U4-16(2155mil,1740.433mil) on Top Layer And Text "NT5" (2160mil,1665mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3041.036mil|Location2.X=3052.286mil|Location1.Y=1687.061mil|Location2.Y=1698.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3041.036mil|Location2.X=3052.286mil|Location1.Y=1687.061mil|Location2.Y=1698.311mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U5-1(3024.887mil,1687.506mil) on Top Layer And Track (2960.927mil,1558.066mil)(3055.77mil,1693.516mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3430.951mil|Location2.X=3442.201mil|Location1.Y=1875.994mil|Location2.Y=1887.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3430.951mil|Location2.X=3442.201mil|Location1.Y=1875.994mil|Location2.Y=1887.244mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U6-1(3414.802mil,1886.799mil) on Top Layer And Track (3419.717mil,1917.876mil)(3514.56mil,1782.426mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3408.594mil|Location2.X=3419.844mil|Location1.Y=1642.009mil|Location2.Y=1653.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3408.594mil|Location2.X=3419.844mil|Location1.Y=1642.009mil|Location2.Y=1653.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.462mil &lt; 10mil) Between Pad U6-13(3415mil,1625mil) on Top Layer And Text "NT6" (3290mil,1650mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.462mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3436.118mil|Location2.X=3443.785mil|Location1.Y=1646.167mil|Location2.Y=1653.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3436.118mil|Location2.X=3443.785mil|Location1.Y=1646.167mil|Location2.Y=1653.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U6-14(3455.958mil,1653.679mil) on Top Layer And Text "NT6" (3290mil,1650mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3849.51mil|Location2.X=3860.76mil|Location1.Y=1575.359mil|Location2.Y=1586.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3849.51mil|Location2.X=3860.76mil|Location1.Y=1575.359mil|Location2.Y=1586.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U7-1(3870mil,1597.716mil) on Top Layer And Track (3848.15mil,1575.079mil)(3848.15mil,1740.433mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5006.036mil|Location2.X=5017.286mil|Location1.Y=1682.061mil|Location2.Y=1693.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5006.036mil|Location2.X=5017.286mil|Location1.Y=1682.061mil|Location2.Y=1693.311mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U8-1(4989.887mil,1682.506mil) on Top Layer And Track (4925.927mil,1553.066mil)(5020.77mil,1688.516mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5392.965mil|Location2.X=5404.215mil|Location1.Y=1877.452mil|Location2.Y=1888.702mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5392.965mil|Location2.X=5404.215mil|Location1.Y=1877.452mil|Location2.Y=1888.702mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.097mil &lt; 10mil) Between Pad U9-1(5376.816mil,1888.257mil) on Top Layer And Track (5381.731mil,1919.334mil)(5476.574mil,1783.884mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.097mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5373.263mil|Location2.X=5380.929mil|Location1.Y=1646.167mil|Location2.Y=1653.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5373.263mil|Location2.X=5380.929mil|Location1.Y=1646.167mil|Location2.Y=1653.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U9-13(5377.014mil,1626.458mil) on Top Layer And Text "NT1" (5240mil,1650mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDI4OTRALELDH4PYS0PWHOKXDY0EE4ALW4KEQYMGE10SHS1BQM4YJF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4238.017mil|Location2.X=4245.684mil|Location1.Y=1713.04mil|Location2.Y=1720.706mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4238.017mil|Location2.X=4245.684mil|Location1.Y=1713.04mil|Location2.Y=1720.706mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "NT3" (4120mil,1665mil) on Top Overlay And Track (4241.85mil,1669.567mil)(4241.85mil,1740.433mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2594.355mil|Location2.X=2602.021mil|Location1.Y=1965.167mil|Location2.Y=1972.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Project Nixie (Baseboard)\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2594.355mil|Location2.X=2602.021mil|Location1.Y=1965.167mil|Location2.Y=1972.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "U5" (2576mil,1969mil) on Top Overlay And Track (2467.207mil,1781.939mil)(2785.609mil,2236.665mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
