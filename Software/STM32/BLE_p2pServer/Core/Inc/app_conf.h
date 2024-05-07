@@ -118,7 +118,7 @@
 /**
  * Device name configuration for Generic Access Service
  */
-#define CFG_GAP_DEVICE_NAME             "TEMPLATE"
+#define CFG_GAP_DEVICE_NAME             "WB Sensors"
 #define CFG_GAP_DEVICE_NAME_LENGTH      (8)
 
 /**
@@ -186,7 +186,7 @@
 #define CONN_P(x) ((int)((x)/1.25f))
 
   /*  L2CAP Connection Update request parameters used for test only with smart Phone */
-#define L2CAP_REQUEST_NEW_CONN_PARAM             1
+#define L2CAP_REQUEST_NEW_CONN_PARAM             0
 
 #define L2CAP_INTERVAL_MIN              CONN_P(1000) /* 1s */
 #define L2CAP_INTERVAL_MAX              CONN_P(1000) /* 1s */
@@ -452,7 +452,7 @@
 /**
  * Select UART interfaces
  */
-#define CFG_DEBUG_TRACE_UART    hw_uart1
+#define CFG_DEBUG_TRACE_UART    0
 #define CFG_CONSOLE_MENU        0
 /******************************************************************************
  * USB interface
@@ -596,12 +596,12 @@ typedef enum
 /**
  * When set to 1, the traces are enabled in the BLE services
  */
-#define CFG_DEBUG_BLE_TRACE     1
+#define CFG_DEBUG_BLE_TRACE     0
 
 /**
  * Enable or Disable traces in application
  */
-#define CFG_DEBUG_APP_TRACE     1
+#define CFG_DEBUG_APP_TRACE     0
 
 #if (CFG_DEBUG_APP_TRACE != 0)
 #define APP_DBG_MSG                 PRINT_MESG_DBG
@@ -627,7 +627,7 @@ typedef enum
  * When both are set to 0, no trace are output
  * When both are set to 1,  CFG_DEBUG_TRACE_FULL is selected
  */
-#define CFG_DEBUG_TRACE_LIGHT     1
+#define CFG_DEBUG_TRACE_LIGHT     0
 #define CFG_DEBUG_TRACE_FULL      0
 
 #if (( CFG_DEBUG_TRACE != 0 ) && ( CFG_DEBUG_TRACE_LIGHT == 0 ) && (CFG_DEBUG_TRACE_FULL == 0))

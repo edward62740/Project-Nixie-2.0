@@ -134,9 +134,8 @@ void MX_APPE_Init(void)
    * The Standby mode should not be entered before the initialization is over
    * The default state of the Low Power Manager is to allow the Standby Mode so an request is needed here
    */
+  UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
   UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-
-
 
 
   RxUART_Init();
@@ -530,7 +529,6 @@ static void APPE_SysEvtReadyProcessing(void * pPayload)
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
 
-
 /* USER CODE END FD_LOCAL_FUNCTIONS */
 
 /*************************************************************
@@ -639,7 +637,7 @@ void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin )
 
 static void RxUART_Init(void)
 {
-  HW_UART_Receive_IT((hw_uart_id_t)CFG_DEBUG_TRACE_UART, aRxBuffer, 1U, RxCpltCallback);
+	HAL_UART_Receive_IT(&hlpuart1, aRxBuffer, 1U);
 }
 
 static void RxCpltCallback(void)
@@ -664,7 +662,8 @@ static void RxCpltCallback(void)
   }
 
   /* Once a character has been sent, put back the device in reception mode */
-  HW_UART_Receive_IT((hw_uart_id_t)CFG_DEBUG_TRACE_UART, aRxBuffer, 1U, RxCpltCallback);
+  //HW_UART_Receive_IT(hw_lpuart1, aRxBuffer, 1U, RxCpltCallback);
+  HAL_UART_Receive_IT(&hlpuart1, aRxBuffer, 1U);
 }
 
 static void UartCmdExecute(void)
@@ -673,13 +672,13 @@ static void UartCmdExecute(void)
   if(strcmp((char const*)CommandString, "SW1") == 0)
   {
     APP_DBG_MSG("SW1 OK\n");
-    exti_handle.Line = 1;
+
     HAL_EXTI_GenerateSWI(&exti_handle);
   }
   else if (strcmp((char const*)CommandString, "SW2") == 0)
   {
     APP_DBG_MSG("SW2 OK\n");
-    exti_handle.Line = 2;
+
     HAL_EXTI_GenerateSWI(&exti_handle);
   }
   else

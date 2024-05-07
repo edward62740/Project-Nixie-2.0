@@ -122,6 +122,7 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
         if(pNotification->DataTransfered.pPayload[1] == 0x01)
         {
 
+
           APP_DBG_MSG("-- P2P APPLICATION SERVER  : LED1 ON\n"); 
           APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
@@ -323,7 +324,6 @@ void P2PS_APP_Init(void)
 /* USER CODE BEGIN FD */
 void P2PS_APP_LED_BUTTON_context_Init(void){
   
-
   
   #if(P2P_SERVER1 != 0)
   P2P_Server_App_Context.LedControl.Device_Led_Selection=0x01; /* Device1 */

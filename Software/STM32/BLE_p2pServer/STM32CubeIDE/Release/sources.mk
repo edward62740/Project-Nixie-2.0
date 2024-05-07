@@ -27,6 +27,15 @@ Application/Startup \
 Application/User/Core \
 Application/User/STM32_WPAN/App \
 Application/User/STM32_WPAN/Target \
+Debug/Application/Startup \
+Debug/Application/User/Core \
+Debug/Application/User/STM32_WPAN/App \
+Debug/Application/User/STM32_WPAN/Target \
+Debug \
+Debug/Drivers/CMSIS \
+Debug/Drivers/STM32WBxx_HAL_Driver \
+Debug/Middlewares/STM32_WPAN \
+Debug/Utilities \
 Drivers/CMSIS \
 Drivers/STM32WBxx_HAL_Driver \
 Middlewares/STM32_WPAN \

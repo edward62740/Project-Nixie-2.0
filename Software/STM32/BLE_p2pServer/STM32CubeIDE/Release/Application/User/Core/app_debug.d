@@ -68,7 +68,8 @@ Application/User/Core/app_debug.o: \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.h \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/mbox_def.h \
  ../../Middlewares/ST/STM32_WPAN/stm32_wpan_common.h \
- ../../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../../Drivers/CMSIS/Include/cmsis_compiler.h ../../Core/Inc/main.h \
+ ../../Core/Inc/app_entry.h ../../Core/Inc/app_common.h \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl.h \
  ../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.h
 ../../Core/Inc/app_common.h:
@@ -142,5 +143,8 @@ Application/User/Core/app_debug.o: \
 ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/mbox_def.h:
 ../../Middlewares/ST/STM32_WPAN/stm32_wpan_common.h:
 ../../Drivers/CMSIS/Include/cmsis_compiler.h:
+../../Core/Inc/main.h:
+../../Core/Inc/app_entry.h:
+../../Core/Inc/app_common.h:
 ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl.h:
 ../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.h:

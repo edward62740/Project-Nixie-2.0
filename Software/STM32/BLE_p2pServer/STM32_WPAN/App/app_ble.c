@@ -235,7 +235,7 @@ uint8_t index_con_int, mutex;
  * Advertising Data
  */
 #if (P2P_SERVER1 != 0)
-static const char a_LocalName[] = {AD_TYPE_COMPLETE_LOCAL_NAME , 'P', '2', 'P', 'S', 'R', 'V', '1'};
+static const char a_LocalName[] = {AD_TYPE_COMPLETE_LOCAL_NAME ,'W','B','5','M',' ','D','K'};
 uint8_t a_ManufData[14] = {sizeof(a_ManufData)-1,
                            AD_TYPE_MANUFACTURER_SPECIFIC_DATA,
                            0x01,                               /*SKD version */
@@ -555,8 +555,9 @@ void APP_BLE_Init(void)
      sprintf(StackBranch, "Branch=%d Type=%d", p_wireless_info->VersionBranch, p_wireless_info->VersionReleaseType);
      sprintf(FusVersion, "FUS v%d.%d.%d", p_wireless_info->FusVersionMajor, p_wireless_info->FusVersionMinor, p_wireless_info->FusVersionSub);
      
-   }
 
+   }
+   HAL_Delay(4000);
    /* Displays Application */
    
    sprintf(BdAddress, "BD_ad=%02x%02x%02x%02x%02x%02x", bdaddr[5],bdaddr[4],bdaddr[3],bdaddr[2],bdaddr[1],bdaddr[0]);
@@ -623,6 +624,7 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *p_Pckt)
       /* USER CODE BEGIN EVT_DISCONN_COMPLETE */
       bdaddr= BleGetBdAddress();
       sprintf(BdAddress, "BD_ad=%02x%02x%02x%02x%02x%02x", bdaddr[5], bdaddr[4], bdaddr[3], bdaddr[2], bdaddr[1], bdaddr[0]);
+
 
       /* USER CODE END EVT_DISCONN_COMPLETE */
       break; /* HCI_DISCONNECTION_COMPLETE_EVT_CODE */
@@ -729,6 +731,7 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *p_Pckt)
           /* USER CODE BEGIN HCI_EVT_LE_CONN_COMPLETE */
           bdaddr= BleGetBdAddress();
           sprintf(BdAddress, "BD_ad=%02x%02x%02x%02x%02x%02x", bdaddr[5],bdaddr[4],bdaddr[3],bdaddr[2],bdaddr[1],bdaddr[0]);
+
           /* USER CODE END HCI_EVT_LE_CONN_COMPLETE */
           break; /* HCI_LE_CONNECTION_COMPLETE_SUBEVT_CODE */
         }
@@ -1131,7 +1134,7 @@ static void Ble_Hci_Gap_Gatt_Init(void)
 
   if (role > 0)
   {
-    const char *name = "P2PSRV1";
+    const char *name = "WB5M DK";
     ret = aci_gap_init(role,
                        CFG_PRIVACY,
                        APPBLE_GAP_DEVICE_NAME_LENGTH,

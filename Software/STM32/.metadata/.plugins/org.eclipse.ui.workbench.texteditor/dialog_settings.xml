@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="4000"/>
+		<item key="selection" value="IPCC"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ipcc"/>
 			<item value="4000"/>
+			<item value="APP_DBG_MSG(&quot;-- P2P APPLICATION SERVER  : INFORM CLIENT BUTTON 1 PUSHED \n &quot;);"/>
+			<item value="HW_"/>
+			<item value="printf"/>
+			<item value="uart"/>
+			<item value="UART"/>
+			<item value="HW_UART"/>
+			<item value="hw_uart1"/>
 		</list>
 		<list key="replacehistory">
 		</list>

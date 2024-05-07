@@ -40,8 +40,6 @@ Application/User/Core/app_debug.o: \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_crs.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc_ex.h \
- ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi.h \
- ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi_ex.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim_ex.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart.h \
@@ -65,7 +63,8 @@ Application/User/Core/app_debug.o: \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.h \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/mbox_def.h \
  ../../Middlewares/ST/STM32_WPAN/stm32_wpan_common.h \
- ../../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../../Drivers/CMSIS/Include/cmsis_compiler.h ../../Core/Inc/main.h \
+ ../../Core/Inc/app_entry.h ../../Core/Inc/app_common.h \
  ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl.h \
  ../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.h
 ../../Core/Inc/app_common.h:
@@ -110,8 +109,6 @@ Application/User/Core/app_debug.o: \
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_crs.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc_ex.h:
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi.h:
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi_ex.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim_ex.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart.h:
@@ -136,5 +133,8 @@ Application/User/Core/app_debug.o: \
 ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/mbox_def.h:
 ../../Middlewares/ST/STM32_WPAN/stm32_wpan_common.h:
 ../../Drivers/CMSIS/Include/cmsis_compiler.h:
+../../Core/Inc/main.h:
+../../Core/Inc/app_entry.h:
+../../Core/Inc/app_common.h:
 ../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl.h:
 ../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.h:

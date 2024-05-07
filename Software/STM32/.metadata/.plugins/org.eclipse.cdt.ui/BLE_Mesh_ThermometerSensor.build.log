@@ -1,0 +1,10 @@
+17:46:21 **** Incremental Build of configuration Release for project BLE_Mesh_ThermometerSensor ****
+make -j8 all 
+arm-none-eabi-size  BLE_Mesh_ThermometerSensor.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 147668	    718	  39955	 188341	  2dfb5	BLE_Mesh_ThermometerSensor.elf
+Finished building: default.size.stdout
+ 
+
+17:46:21 Build Finished. 0 errors, 0 warnings. (took 520ms)
+

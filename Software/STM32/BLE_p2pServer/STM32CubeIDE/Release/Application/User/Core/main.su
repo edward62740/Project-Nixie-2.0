@@ -1,7 +1,6 @@
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h:539:22:LL_AHB2_GRP1_EnableClock	8	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:135:6:SystemClock_Config	112	static,ignoring_inline_asm
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:186:6:PeriphCommonClock_Config	88	static,ignoring_inline_asm
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:313:6:MX_USART1_UART_Init	8	static,ignoring_inline_asm
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:77:5:main	40	static,ignoring_inline_asm
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:613:6:PeriphClock_Config	0	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:667:6:Error_Handler	0	static,ignoring_inline_asm
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:140:6:SystemClock_Config	112	static,ignoring_inline_asm
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:197:6:PeriphCommonClock_Config	88	static,ignoring_inline_asm
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:79:5:main	40	static,ignoring_inline_asm
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:616:6:PeriphClock_Config	0	static
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:670:6:Error_Handler	0	static,ignoring_inline_asm

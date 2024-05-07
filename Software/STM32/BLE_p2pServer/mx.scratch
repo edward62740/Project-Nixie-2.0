@@ -18,7 +18,20 @@
        
       <Secure/>
             
-      <filestoremove>                           </filestoremove>
+      <filestoremove>
+                
+        <file>
+                      
+          <name>Core/Src/hw_uart.c</name>
+                  
+        </file>
+        <file>
+                      
+          <name>..\Src\stm32wb5mm-dk.c</name>
+                  
+        </file>
+                           
+      </filestoremove>
           
       <configs>
         <config>
@@ -56,7 +69,7 @@
               
           <stackSize>0x1000</stackSize>
                   
-          <cpuclock>32</cpuclock>
+          <cpuclock>64</cpuclock>
                   
           <board>STM32WB5MM-DK</board>
               
@@ -472,6 +485,18 @@
                         
             <file>
                               
+              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_uart.c</name>
+                              
+            </file>
+                        
+            <file>
+                              
+              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_uart_ex.c</name>
+                              
+            </file>
+                        
+            <file>
+                              
               <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_rtc.c</name>
                               
             </file>
@@ -503,18 +528,6 @@
             <file>
                               
               <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_tim_ex.c</name>
-                              
-            </file>
-                        
-            <file>
-                              
-              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_uart.c</name>
-                              
-            </file>
-                        
-            <file>
-                              
-              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_uart_ex.c</name>
                               
             </file>
                         
@@ -585,12 +598,6 @@
               <file>
                                     
                 <name>Core\Src\hw_timerserver.c</name>
-                                    
-              </file>
-                              
-              <file>
-                                    
-                <name>Core\Src\hw_uart.c</name>
                                     
               </file>
                               

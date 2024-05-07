@@ -13,6 +13,15 @@ RM := rm -rf
 -include Middlewares/STM32_WPAN/subdir.mk
 -include Drivers/STM32WBxx_HAL_Driver/subdir.mk
 -include Drivers/CMSIS/subdir.mk
+-include Debug/Utilities/subdir.mk
+-include Debug/Middlewares/STM32_WPAN/subdir.mk
+-include Debug/Drivers/STM32WBxx_HAL_Driver/subdir.mk
+-include Debug/Drivers/CMSIS/subdir.mk
+-include Debug/Application/User/STM32_WPAN/Target/subdir.mk
+-include Debug/Application/User/STM32_WPAN/App/subdir.mk
+-include Debug/Application/User/Core/subdir.mk
+-include Debug/Application/Startup/subdir.mk
+-include Debug/subdir.mk
 -include Application/User/STM32_WPAN/Target/subdir.mk
 -include Application/User/STM32_WPAN/App/subdir.mk
 -include Application/User/Core/subdir.mk
