@@ -10,6 +10,15 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Utilities/subdir.mk
+-include Release/Utilities/subdir.mk
+-include Release/Middlewares/STM32_WPAN/subdir.mk
+-include Release/Drivers/STM32WBxx_HAL_Driver/subdir.mk
+-include Release/Drivers/CMSIS/subdir.mk
+-include Release/Application/User/STM32_WPAN/Target/subdir.mk
+-include Release/Application/User/STM32_WPAN/App/subdir.mk
+-include Release/Application/User/Core/subdir.mk
+-include Release/Application/Startup/subdir.mk
+-include Release/subdir.mk
 -include Middlewares/STM32_WPAN/subdir.mk
 -include Drivers/STM32WBxx_HAL_Driver/subdir.mk
 -include Drivers/CMSIS/subdir.mk

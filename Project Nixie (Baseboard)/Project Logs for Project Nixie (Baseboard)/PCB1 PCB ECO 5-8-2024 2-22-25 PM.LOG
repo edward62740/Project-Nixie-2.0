@@ -1,0 +1,13 @@
+Added Component: Designator=*(PCBComponent_1)
+Add Component: Footprint Not Found CAP_35C0055_VIS
+Add Component: Footprint Not Found CAP_35C0055_VIS
+Added Component: Designator=CR?(POWERFLAT5X6_STM)
+Add component (AddParameter): Name = "Mfr_Name"; Value = "STMicroelectronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found QFN24_W-QFN4040-24_A1_DIO
+Added Member To Class: ClassName=Power Member=Component * Component_1
+Add Class Member: Failed to add class member : Component C1 T52M1107M035C0055
+Add Class Member: Failed to add class member : Component C2 T52M1107M035C0055
+Added Member To Class: ClassName=Power Member=Component CR? STTH5R06DJF-TR
+Add Class Member: Failed to add class member : Component U12 AP33771DKZ-13

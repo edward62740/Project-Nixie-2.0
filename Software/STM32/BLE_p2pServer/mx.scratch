@@ -18,20 +18,7 @@
        
       <Secure/>
             
-      <filestoremove>
-                
-        <file>
-                      
-          <name>Core/Src/hw_uart.c</name>
-                  
-        </file>
-        <file>
-                      
-          <name>..\Src\stm32wb5mm-dk.c</name>
-                  
-        </file>
-                           
-      </filestoremove>
+      <filestoremove>                           </filestoremove>
           
       <configs>
         <config>

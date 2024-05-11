@@ -8,8 +8,8 @@
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:1031:22:LL_RTC_EnableWriteProtection	16	static
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:1042:22:LL_RTC_DisableWriteProtection	16	static
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:3006:22:LL_RTC_WAKEUP_SetClock	16	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:103:6:MX_APPE_Config	8	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:123:6:MX_APPE_Init	8	static
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:102:6:MX_APPE_Config	8	static
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:122:6:MX_APPE_Init	8	static
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:158:6:Init_Smps	4	static
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:176:6:Init_Exti	8	static
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:194:13:Reset_Device	4	static

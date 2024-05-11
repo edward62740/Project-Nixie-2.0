@@ -8,8 +8,8 @@
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:1031:22:LL_RTC_EnableWriteProtection	1
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:1042:22:LL_RTC_DisableWriteProtection	1
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rtc.h:3006:22:LL_RTC_WAKEUP_SetClock	1
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:103:6:MX_APPE_Config	1
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:123:6:MX_APPE_Init	1
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:102:6:MX_APPE_Config	1
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:122:6:MX_APPE_Init	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:158:6:Init_Smps	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:176:6:Init_Exti	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:194:13:Reset_Device	1
@@ -19,8 +19,8 @@ C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pSe
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:311:13:SystemPower_Config	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:333:13:appe_Tl_Init	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:358:13:APPE_SysStatusNot	1
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:373:13:APPE_SysUserEvtRx	8
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:436:13:APPE_SysEvtError	2
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:373:13:APPE_SysUserEvtRx	3
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:436:13:APPE_SysEvtError	1
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:458:13:APPE_SysEvtReadyProcessing	3
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:539:6:HAL_Delay	3
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_entry.c:568:6:MX_APPE_Process	1

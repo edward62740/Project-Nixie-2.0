@@ -30,5 +30,14 @@ Application/User/STM32_WPAN/Target \
 Drivers/CMSIS \
 Drivers/STM32WBxx_HAL_Driver \
 Middlewares/STM32_WPAN \
+Release/Application/Startup \
+Release/Application/User/Core \
+Release/Application/User/STM32_WPAN/App \
+Release/Application/User/STM32_WPAN/Target \
+Release \
+Release/Drivers/CMSIS \
+Release/Drivers/STM32WBxx_HAL_Driver \
+Release/Middlewares/STM32_WPAN \
+Release/Utilities \
 Utilities \
 

@@ -1,0 +1,17 @@
+Added Component: Designator=J?(KEYSTONE-1025-7-2_V)
+Add component (AddParameter): Name = "# of Cells"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Cell Size"; Value = "24 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.keyelco.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.keyelco.com/product-pdf.cfm?p=3950"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Rev.C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Keystone"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Material"; Value = "Plastic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "2-Pin Hand Drawn, Body 27.762 x 30.963 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "KEYSTONE-1025-7-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "1025-7"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Switch Current Limit (Typ) (A)"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "HOLDER"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Submodule Interface Member=Component J? 1025-7

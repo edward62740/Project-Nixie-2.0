@@ -1,0 +1,19 @@
+Removed Member From Class: ClassName=HV Power Member=C?
+Change Component Footprint: Designator=D? Old Footprint=FP-425AB-MFG New Footprint=FP-425AB-MFG
+Change Component Designator: OldDesignator=BT? NewDesignator=BT1
+Change Component Designator: OldDesignator=C? NewDesignator=C8
+Change Component Designator: OldDesignator=C? NewDesignator=C9
+Change Component Designator: OldDesignator=C? NewDesignator=C20
+Change Component Designator: OldDesignator=C? NewDesignator=C21
+Change Component Designator: OldDesignator=C? NewDesignator=C22
+Change Component Designator: OldDesignator=C? NewDesignator=C23
+Change Component Designator: OldDesignator=C? NewDesignator=C24
+Change Component Designator: OldDesignator=D? NewDesignator=D4
+Change Component Designator: OldDesignator=R? NewDesignator=R28
+Change Net Name : Old Net Name=NetC?_1 New Net Name=NetC8_1
+Added Member To Class: ClassName=HV Power Member=Component C8 Capacitor 10µF +/-40% 6.3V 0402
+Added Member To Class: ClassName=HV Power Member=Component C9 C3216X7T2E224K160AA
+Added Member To Class: ClassName=HV Power Member=Component C20 C3216X7T2E224K160AA
+Added Member To Class: ClassName=Drivers Member=Component C21 Capacitor 10µF +/-40% 6.3V 0402
+Added Member To Class: ClassName=Drivers Member=Component C22 Capacitor 10µF +/-40% 6.3V 0402
+Added Member To Class: ClassName=Drivers Member=Component C23 Capacitor 10µF +/-40% 6.3V 0402

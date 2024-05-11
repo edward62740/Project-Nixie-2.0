@@ -129,9 +129,33 @@ void MX_APPE_Init(void)
 /* USER CODE BEGIN APPE_Init_1 */
   APPD_Init();
   
-  
-   
+  BSP_LCD_Init(0, LCD_ORIENTATION_LANDSCAPE);
+  /* Set LCD Foreground Layer  */
+  UTIL_LCD_SetFuncDriver(&LCD_Driver); /* SetFunc before setting device */
+  UTIL_LCD_SetDevice(0);            /* SetDevice after funcDriver is set */
+  BSP_LCD_Clear(0,SSD1315_COLOR_BLACK);
+  BSP_LCD_DisplayOn(0);
+  BSP_LCD_Refresh(0);
+  UTIL_LCD_SetFont(&Font12);
+  /* Set the LCD Text Color */
+  UTIL_LCD_SetTextColor(SSD1315_COLOR_WHITE);
+  UTIL_LCD_SetBackColor(SSD1315_COLOR_BLACK);
+  BSP_LCD_Clear(0,SSD1315_COLOR_BLACK);
+  BSP_LCD_Refresh(0);
 
+  //Switch RGB LED off
+  LED_Off();
+  
+  BSP_MOTION_SENSOR_Init(MOTION_SENSOR_ISM330DHCX_0, MOTION_ACCELERO | MOTION_GYRO);
+  BSP_MOTION_SENSOR_Enable(MOTION_SENSOR_ISM330DHCX_0, MOTION_ACCELERO | MOTION_GYRO);
+  
+  BSP_ENV_SENSOR_Init(ENV_SENSOR_STTS22H_0, ENV_TEMPERATURE);
+  BSP_ENV_SENSOR_Enable(ENV_SENSOR_STTS22H_0, ENV_TEMPERATURE);
+  
+  VL53L0X_PROXIMITY_Init();
+   
+  //Initialize user buttons
+  Button_Init();
 
   RxUART_Init();
 
