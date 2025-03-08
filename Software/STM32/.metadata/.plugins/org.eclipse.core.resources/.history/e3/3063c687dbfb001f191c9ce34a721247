@@ -1,0 +1,19 @@
+#include "main.h"
+#include <app_main.h>
+
+
+#include "pca9698.h"
+
+PCA9698 bus1(&hi2c1, 0x20);
+PCA9698 bus2(&hi2c1, 0x21);
+
+void app_main(void)
+{
+
+}
+
+
+void app_loop(void)
+{
+
+}

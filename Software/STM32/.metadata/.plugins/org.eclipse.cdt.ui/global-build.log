@@ -1,26 +1,13 @@
-15:04:43 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+14:09:37 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
 make -j8 all 
-arm-none-eabi-gcc "C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../STM32_WPAN/App -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/CMSIS/Include -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/main.d" -MT"Application/User/Core/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/main.o"
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c: In function 'main':
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:162:26: warning: passing argument 1 of 'printf' makes pointer from integer without a cast [-Wint-conversion]
-  162 |                   printf((i), "%d"); // Received an ACK at that address
-      |                          ^~~
-      |                          |
-      |                          uint8_t {aka unsigned char}
-In file included from ../../Core/Inc/app_common.h:30,
-                 from ../../Core/Inc/main.h:33,
-                 from C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c:20:
-C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/stdio.h:206:17: note: expected 'const char * restrict' but argument is of type 'uint8_t' {aka 'unsigned char'}
-  206 | int     printf (const char *__restrict, ...)
-      |                 ^
-arm-none-eabi-gcc -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.11.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: BLE_p2pServer.elf has a LOAD segment with RWX permissions
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: BLE_p2pServer.elf
  
 arm-none-eabi-size  BLE_p2pServer.elf 
 arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
    text	   data	    bss	    dec	    hex	filename
-  65412	    578	   9279	  75269	  12605	BLE_p2pServer.elf
+  59860	    634	   9279	  69773	  1108d	BLE_p2pServer.elf
 arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
 Finished building: default.size.stdout
  
@@ -28,35 +15,95 @@ Finished building: BLE_p2pServer.hex
  
 Finished building: BLE_p2pServer.list
  
-15:04:46 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+14:09:43 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
 make -j8 all 
 arm-none-eabi-size  BLE_p2pServer.elf 
    text	   data	    bss	    dec	    hex	filename
-  65412	    578	   9279	  75269	  12605	BLE_p2pServer.elf
+  59860	    634	   9279	  69773	  1108d	BLE_p2pServer.elf
 Finished building: default.size.stdout
  
-15:05:32 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+14:10:09 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
 make -j8 all 
-arm-none-eabi-gcc "C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../STM32_WPAN/App -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/CMSIS/Include -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/main.d" -MT"Application/User/Core/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/main.o"
-arm-none-eabi-gcc -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.11.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: BLE_p2pServer.elf has a LOAD segment with RWX permissions
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: BLE_p2pServer.elf
  
 arm-none-eabi-size  BLE_p2pServer.elf 
 arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
 arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
    text	   data	    bss	    dec	    hex	filename
-  65412	    578	   9279	  75269	  12605	BLE_p2pServer.elf
+  57960	    626	   9271	  67857	  10911	BLE_p2pServer.elf
 Finished building: default.size.stdout
  
 Finished building: BLE_p2pServer.hex
  
 Finished building: BLE_p2pServer.list
  
-15:16:31 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+14:10:17 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
 make -j8 all 
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: BLE_p2pServer.elf
+ 
 arm-none-eabi-size  BLE_p2pServer.elf 
+arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
+arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
    text	   data	    bss	    dec	    hex	filename
-  65412	    578	   9279	  75269	  12605	BLE_p2pServer.elf
+  59860	    634	   9279	  69773	  1108d	BLE_p2pServer.elf
 Finished building: default.size.stdout
+ 
+Finished building: BLE_p2pServer.hex
+ 
+Finished building: BLE_p2pServer.list
+ 
+14:11:17 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+make -j8 all 
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: BLE_p2pServer.elf
+ 
+arm-none-eabi-size  BLE_p2pServer.elf 
+arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
+arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
+   text	   data	    bss	    dec	    hex	filename
+  60092	    634	   9279	  70005	  11175	BLE_p2pServer.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLE_p2pServer.hex
+ 
+Finished building: BLE_p2pServer.list
+ 
+14:22:58 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+make -j8 all 
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: BLE_p2pServer.elf
+ 
+arm-none-eabi-size  BLE_p2pServer.elf 
+arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
+arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
+   text	   data	    bss	    dec	    hex	filename
+  60124	    634	   9279	  70037	  11195	BLE_p2pServer.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLE_p2pServer.hex
+ 
+Finished building: BLE_p2pServer.list
+ 
+14:23:11 **** Incremental Build of configuration Debug for project BLE_p2pServer ****
+make -j8 all 
+arm-none-eabi-g++ "../Application/User/Core/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32WB5Mxx -DUSE_HAL_DRIVER -c -I../../Core/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc -I../../Drivers/STM32WBxx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32WBxx/Include -I../../Drivers/CMSIS/Include -I../../STM32_WPAN/App -I../../Utilities/lpm/tiny_lpm -I../../Middlewares/ST/STM32_WPAN -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl -I../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci -I../../Middlewares/ST/STM32_WPAN/utilities -I../../Middlewares/ST/STM32_WPAN/ble/core -I../../Middlewares/ST/STM32_WPAN/ble/core/auto -I../../Middlewares/ST/STM32_WPAN/ble/core/template -I../../Middlewares/ST/STM32_WPAN/ble/svc/Inc -I../../Middlewares/ST/STM32_WPAN/ble/svc/Src -I../../Utilities/sequencer -I../../Middlewares/ST/STM32_WPAN/ble -I../../Drivers/BSP/STM32WB5MM-DK -I../../Drivers/BSP/Components/ssd1315 -I../../Drivers/BSP/Components/Common -I../../Utilities/Fonts -I../../Utilities/LCD -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core" -I"C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/Core/app_main.d" -MT"Application/User/Core/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Application/User/Core/app_main.o"
+arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: BLE_p2pServer.elf
+ 
+arm-none-eabi-size  BLE_p2pServer.elf 
+arm-none-eabi-objdump -h -S BLE_p2pServer.elf  > "BLE_p2pServer.list"
+arm-none-eabi-objcopy  -O ihex BLE_p2pServer.elf  "BLE_p2pServer.hex"
+   text	   data	    bss	    dec	    hex	filename
+  60124	    634	   9279	  70037	  11195	BLE_p2pServer.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLE_p2pServer.hex
+ 
+Finished building: BLE_p2pServer.list
  

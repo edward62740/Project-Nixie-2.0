@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer (1)
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:app,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_Mesh_ThermometerSensor/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_Mesh_ThermometerSensor/activeLaunchTarget=null\:---
@@ -9,7 +9,7 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_Sensor/activeLaunchMode=deb
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_Sensor/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer\ (1)/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer\ (1)/activeLaunchTarget=null\:---
-org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:BLE_p2pServer/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:app/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:app/activeLaunchTarget=null\:---

@@ -25,7 +25,6 @@
 #include "app_debug.h"
 #include "utilities_common.h"
 #include "shci.h"
-#include "main.h"
 #include "tl.h"
 #include "dbg_trace.h"
 /* USER CODE END Includes */
@@ -396,7 +395,12 @@ void DbgOutputInit( void )
     MX_LPUART1_UART_Init();
 #endif
   }
-
+  else if (CFG_DEBUG_TRACE_UART == hw_uart1)
+  {
+#if(CFG_HW_USART1_ENABLED == 1)
+    MX_USART1_UART_Init();
+#endif
+  }
 #endif
 
 /* USER CODE END DbgOutputInit */

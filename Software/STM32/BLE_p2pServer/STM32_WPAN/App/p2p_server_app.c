@@ -77,7 +77,7 @@ static P2P_Server_App_Context_t P2P_Server_App_Context;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
 static void P2PS_Send_Notification(void);
-static void P2PS_APP_LED_BUTTON_context_Init(void);
+
 /* USER CODE END PFP */
 
 /* Functions Definition ------------------------------------------------------*/
@@ -91,8 +91,8 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
 /* USER CODE BEGIN P2PS_STM_App_Notification_P2P_Evt_Opcode */
 #if(BLE_CFG_OTA_REBOOT_CHAR != 0)
     case P2PS_STM_BOOT_REQUEST_EVT:
-      printf("-- P2P APPLICATION SERVER : BOOT REQUESTED\n");
-      printf(" \n\r");
+      APP_DBG_MSG("-- P2P APPLICATION SERVER : BOOT REQUESTED\n");
+      APP_DBG_MSG(" \n\r");
 
       *(uint32_t*)SRAM1_BASE = *(uint32_t*)pNotification->DataTransfered.pPayload;
       NVIC_SystemReset();
@@ -103,16 +103,16 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
     case P2PS_STM__NOTIFY_ENABLED_EVT:
 /* USER CODE BEGIN P2PS_STM__NOTIFY_ENABLED_EVT */
       P2P_Server_App_Context.Notification_Status = 1;
-      printf("-- P2P APPLICATION SERVER : NOTIFICATION ENABLED\n");
-      printf(" \n\r");
+      APP_DBG_MSG("-- P2P APPLICATION SERVER : NOTIFICATION ENABLED\n"); 
+      APP_DBG_MSG(" \n\r");
 /* USER CODE END P2PS_STM__NOTIFY_ENABLED_EVT */
       break;
 
     case P2PS_STM_NOTIFY_DISABLED_EVT:
 /* USER CODE BEGIN P2PS_STM_NOTIFY_DISABLED_EVT */
       P2P_Server_App_Context.Notification_Status = 0;
-      printf("-- P2P APPLICATION SERVER : NOTIFICATION DISABLED\n");
-      printf(" \n\r");
+      APP_DBG_MSG("-- P2P APPLICATION SERVER : NOTIFICATION DISABLED\n");
+      APP_DBG_MSG(" \n\r");
 /* USER CODE END P2PS_STM_NOTIFY_DISABLED_EVT */
       break;
 
@@ -122,16 +122,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
         if(pNotification->DataTransfered.pPayload[1] == 0x01)
         {
 
-
-          printf("-- P2P APPLICATION SERVER  : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER  : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
 
-          printf("-- P2P APPLICATION SERVER  : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER  : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }
       }
@@ -140,15 +139,16 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
         if(pNotification->DataTransfered.pPayload[1] == 0x01)
         {
 
-          printf("-- P2P APPLICATION SERVER 1 : LED1 ON\n");
-          printf(" \n\r");
+
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 1 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
 
-          printf("-- P2P APPLICATION SERVER 1 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 1 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }
       }
@@ -161,15 +161,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
           aPwmLedGsData[PWM_LED_GREEN] = PWM_LED_GSDATA_OFF;
           aPwmLedGsData[PWM_LED_BLUE]  = PWM_LED_GSDATA_7_0;
           LED_On(aPwmLedGsData);
-          printf("-- P2P APPLICATION SERVER 2 : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 2 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
           LED_Off();
-          printf("-- P2P APPLICATION SERVER 2 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 2 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }   
       }
@@ -182,15 +182,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
           aPwmLedGsData[PWM_LED_GREEN] = PWM_LED_GSDATA_OFF;
           aPwmLedGsData[PWM_LED_BLUE]  = PWM_LED_GSDATA_7_0;
           LED_On(aPwmLedGsData);
-          printf("-- P2P APPLICATION SERVER 3 : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 3 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
           LED_Off();
-          printf("-- P2P APPLICATION SERVER 3 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 3 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }
       }
@@ -203,15 +203,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
           aPwmLedGsData[PWM_LED_GREEN] = PWM_LED_GSDATA_OFF;
           aPwmLedGsData[PWM_LED_BLUE]  = PWM_LED_GSDATA_7_0;
           LED_On(aPwmLedGsData);
-          printf("-- P2P APPLICATION SERVER 2 : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 2 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
           LED_Off();
-          printf("-- P2P APPLICATION SERVER 2 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 2 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }   
       }
@@ -224,15 +224,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
           aPwmLedGsData[PWM_LED_GREEN] = PWM_LED_GSDATA_OFF;
           aPwmLedGsData[PWM_LED_BLUE]  = PWM_LED_GSDATA_7_0;
           LED_On(aPwmLedGsData);
-          printf("-- P2P APPLICATION SERVER 5 : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 5 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
           LED_Off();
-          printf("-- P2P APPLICATION SERVER 5 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 5 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }
       }
@@ -245,15 +245,15 @@ void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification)
           aPwmLedGsData[PWM_LED_GREEN] = PWM_LED_GSDATA_OFF;
           aPwmLedGsData[PWM_LED_BLUE]  = PWM_LED_GSDATA_7_0;
           LED_On(aPwmLedGsData);
-          printf("-- P2P APPLICATION SERVER 6 : LED1 ON\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 6 : LED1 ON\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x01; /* LED1 ON */
         }
         if(pNotification->DataTransfered.pPayload[1] == 0x00)
         {
           LED_Off();
-          printf("-- P2P APPLICATION SERVER 6 : LED1 OFF\n");
-          printf(" \n\r");
+          APP_DBG_MSG("-- P2P APPLICATION SERVER 6 : LED1 OFF\n"); 
+          APP_DBG_MSG(" \n\r");
           P2P_Server_App_Context.LedControl.Led1=0x00; /* LED1 OFF */
         }   
       }
@@ -291,7 +291,7 @@ void P2PS_APP_Notification(P2PS_APP_ConnHandle_Not_evt_t *pNotification)
 
     case PEER_DISCON_HANDLE_EVT :
 /* USER CODE BEGIN PEER_DISCON_HANDLE_EVT */
-       P2PS_APP_LED_BUTTON_context_Init();       
+
 /* USER CODE END PEER_DISCON_HANDLE_EVT */
     break;
 
@@ -316,59 +316,14 @@ void P2PS_APP_Init(void)
    * Initialize LedButton Service
    */
   P2P_Server_App_Context.Notification_Status=0; 
-  P2PS_APP_LED_BUTTON_context_Init();
+
 /* USER CODE END P2PS_APP_Init */
   return;
 }
 
 /* USER CODE BEGIN FD */
-void P2PS_APP_LED_BUTTON_context_Init(void){
-  
-  
-  #if(P2P_SERVER1 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x01; /* Device1 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x01;/* Device1 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif
-#if(P2P_SERVER2 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x02; /* Device2 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x02;/* Device2 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif  
-#if(P2P_SERVER3 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x03; /* Device3 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x03; /* Device3 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif
-#if(P2P_SERVER4 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x04; /* Device4 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x04; /* Device4 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif  
- #if(P2P_SERVER5 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x05; /* Device5 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x05; /* Device5 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif
-#if(P2P_SERVER6 != 0)
-  P2P_Server_App_Context.LedControl.Device_Led_Selection=0x06; /* device6 */
-  P2P_Server_App_Context.LedControl.Led1=0x00; /* led OFF */
-  P2P_Server_App_Context.ButtonControl.Device_Button_Selection=0x06; /* Device6 */
-  P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
-#endif  
-}
 
-void P2PS_APP_SW1_Button_Action(void)
-{
-  UTIL_SEQ_SetTask( 1<<CFG_TASK_SW1_BUTTON_PUSHED_ID, CFG_SCH_PRIO_0);
 
-  return;
-}
 /* USER CODE END FD */
 
 /*************************************************************
@@ -383,17 +338,18 @@ void P2PS_Send_Notification(void)
   if(P2P_Server_App_Context.ButtonControl.ButtonStatus == 0x00){
     P2P_Server_App_Context.ButtonControl.ButtonStatus=0x01;
 
+
   } else {
     P2P_Server_App_Context.ButtonControl.ButtonStatus=0x00;
 
   }
   
    if(P2P_Server_App_Context.Notification_Status){ 
-    printf("-- P2P APPLICATION SERVER  : INFORM CLIENT BUTTON 1a PUSHED \n ");
-    printf(" \n\r");
+    APP_DBG_MSG("-- P2P APPLICATION SERVER  : INFORM CLIENT BUTTON 1 PUSHED \n ");
+    APP_DBG_MSG(" \n\r");
     P2PS_STM_App_Update_Char(P2P_NOTIFY_CHAR_UUID, (uint8_t *)&P2P_Server_App_Context.ButtonControl);
    } else {
-    printf("-- P2P APPLICATION SERVER : CAN'T INFORM CLIENT -  NOTIFICATION DISABLED\n ");
+    APP_DBG_MSG("-- P2P APPLICATION SERVER : CAN'T INFORM CLIENT -  NOTIFICATION DISABLED\n "); 
    }
 
   return;

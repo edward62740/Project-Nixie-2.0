@@ -1,4 +1,0 @@
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h:539:22:LL_AHB2_GRP1_EnableClock	8	static
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h:1636:22:LL_C2_AHB2_GRP1_EnableClock	8	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_debug.c:178:6:APPD_Init	48	static
-C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/Core/Src/app_debug.c:224:6:APPD_EnableCPU2	48	static

@@ -3,41 +3,49 @@
 # Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
-ELF_SRCS := 
-OBJ_SRCS := 
-S_SRCS := 
-C_SRCS := 
+C++M_SRCS := 
+CPP_SRCS := 
 S_UPPER_SRCS := 
 O_SRCS := 
+ELF_SRCS := 
+C_UPPER_SRCS := 
+CXX_SRCS := 
+CCM_SRCS := 
+C++_SRCS := 
+OBJ_SRCS := 
+S_SRCS := 
+CC_SRCS := 
+C_SRCS := 
+CXXM_SRCS := 
 CYCLO_FILES := 
+OBJDUMP_LIST := 
+CCM_DEPS := 
+C_UPPER_DEPS := 
+S_DEPS := 
+CXXM_DEPS := 
+C_DEPS := 
+CC_DEPS := 
 OBJCOPY_HEX := 
 SIZE_OUTPUT := 
-OBJDUMP_LIST := 
+C++_DEPS := 
 SU_FILES := 
 EXECUTABLES := 
 OBJS := 
+CXX_DEPS := 
 MAP_FILES := 
-S_DEPS := 
 S_UPPER_DEPS := 
-C_DEPS := 
+C++M_DEPS := 
+CPP_DEPS := 
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Application/Startup \
 Application/User/Core \
+Application/User/Drivers \
 Application/User/STM32_WPAN/App \
 Application/User/STM32_WPAN/Target \
 Drivers/CMSIS \
 Drivers/STM32WBxx_HAL_Driver \
 Middlewares/STM32_WPAN \
-Release/Application/Startup \
-Release/Application/User/Core \
-Release/Application/User/STM32_WPAN/App \
-Release/Application/User/STM32_WPAN/Target \
-Release \
-Release/Drivers/CMSIS \
-Release/Drivers/STM32WBxx_HAL_Driver \
-Release/Middlewares/STM32_WPAN \
-Release/Utilities \
 Utilities \
 

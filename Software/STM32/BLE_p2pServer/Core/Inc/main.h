@@ -54,7 +54,8 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-extern UART_HandleTypeDef hlpuart1;
+extern I2C_HandleTypeDef hi2c1;
+extern I2C_HandleTypeDef hi2c3;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -64,41 +65,16 @@ extern UART_HandleTypeDef hlpuart1;
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-void DBG_PRINT(void *v, char *fmt);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define T_SWDIO_Pin GPIO_PIN_13
-#define T_SWDIO_GPIO_Port GPIOA
-#define T_SWCLK_Pin GPIO_PIN_14
-#define T_SWCLK_GPIO_Port GPIOA
-#define USB_P_Pin GPIO_PIN_12
-#define USB_P_GPIO_Port GPIOA
-#define USB_N_Pin GPIO_PIN_11
-#define USB_N_GPIO_Port GPIOA
 #define I2C3_SCL_Pin GPIO_PIN_13
 #define I2C3_SCL_GPIO_Port GPIOB
 #define I2C3_SDA_Pin GPIO_PIN_14
 #define I2C3_SDA_GPIO_Port GPIOB
-#define CS_DISP_Pin GPIO_PIN_0
-#define CS_DISP_GPIO_Port GPIOH
-#define GPIO_SELECT2_Pin GPIO_PIN_1
-#define GPIO_SELECT2_GPIO_Port GPIOH
-#define DRDY_Pin GPIO_PIN_1
-#define DRDY_GPIO_Port GPIOE
-#define INT1_Pin GPIO_PIN_2
-#define INT1_GPIO_Port GPIOD
-#define D_C_DISP_Pin GPIO_PIN_9
-#define D_C_DISP_GPIO_Port GPIOC
-#define INT2_Pin GPIO_PIN_9
-#define INT2_GPIO_Port GPIOD
-#define GPIO_SELECT1_Pin GPIO_PIN_2
-#define GPIO_SELECT1_GPIO_Port GPIOE
-#define RST_DISP_Pin GPIO_PIN_8
-#define RST_DISP_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 

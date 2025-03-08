@@ -1,0 +1,7 @@
+../Application/User/Core/app_main.cpp:21:6:void app_main()	16	static
+../Application/User/Core/app_main.cpp:43:6:void app_loop()	16	static
+../Application/User/Core/app_main.cpp:58:6:bool platformGPIOWrite(uint8_t, bool)	16	static
+../Application/User/Core/app_main.cpp:76:6:void platformDelayMs(uint32_t)	16	static
+../Application/User/Core/app_main.cpp:79:1:void __static_initialization_and_destruction_0(int, int)	40	static
+../Application/User/Core/app_main.cpp:79:1:cpp)	8	static
+../Application/User/Core/app_main.cpp:79:1:cpp)	8	static

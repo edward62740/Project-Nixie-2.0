@@ -1,0 +1,7 @@
+1741405557161	Delete resource 'BLE_p2pServer'
+1741405587871	Delete resource 'BLE_p2pServer'
+1741408003302	Delete 3 resources
+1741408025864	Delete resource 'BLE_p2pServer/Drivers/BSP/STM32WB5MM-DK'
+1741408088591	Delete resource 'BLE_p2pServer/Drivers/BSP'
+1741408110438	Delete resource 'BLE_p2pServer/Application/User/Core/hw_uart.c'
+1741408239413	Delete resource 'BLE_p2pServer/Utilities/stm32_lcd.c'

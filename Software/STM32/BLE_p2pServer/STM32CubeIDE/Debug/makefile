@@ -10,33 +10,49 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Utilities/subdir.mk
--include Release/Utilities/subdir.mk
--include Release/Middlewares/STM32_WPAN/subdir.mk
--include Release/Drivers/STM32WBxx_HAL_Driver/subdir.mk
--include Release/Drivers/CMSIS/subdir.mk
--include Release/Application/User/STM32_WPAN/Target/subdir.mk
--include Release/Application/User/STM32_WPAN/App/subdir.mk
--include Release/Application/User/Core/subdir.mk
--include Release/Application/Startup/subdir.mk
--include Release/subdir.mk
 -include Middlewares/STM32_WPAN/subdir.mk
 -include Drivers/STM32WBxx_HAL_Driver/subdir.mk
 -include Drivers/CMSIS/subdir.mk
 -include Application/User/STM32_WPAN/Target/subdir.mk
 -include Application/User/STM32_WPAN/App/subdir.mk
+-include Application/User/Drivers/subdir.mk
 -include Application/User/Core/subdir.mk
 -include Application/Startup/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(CC_DEPS)),)
+-include $(CC_DEPS)
+endif
+ifneq ($(strip $(C++_DEPS)),)
+-include $(C++_DEPS)
+endif
+ifneq ($(strip $(CCM_DEPS)),)
+-include $(CCM_DEPS)
+endif
+ifneq ($(strip $(C_UPPER_DEPS)),)
+-include $(C_UPPER_DEPS)
+endif
+ifneq ($(strip $(CXX_DEPS)),)
+-include $(CXX_DEPS)
+endif
 ifneq ($(strip $(S_DEPS)),)
 -include $(S_DEPS)
 endif
 ifneq ($(strip $(S_UPPER_DEPS)),)
 -include $(S_UPPER_DEPS)
 endif
+ifneq ($(strip $(CXXM_DEPS)),)
+-include $(CXXM_DEPS)
+endif
+ifneq ($(strip $(C++M_DEPS)),)
+-include $(C++M_DEPS)
+endif
 ifneq ($(strip $(C_DEPS)),)
 -include $(C_DEPS)
+endif
+ifneq ($(strip $(CPP_DEPS)),)
+-include $(CPP_DEPS)
 endif
 endif
 
@@ -78,7 +94,7 @@ main-build: BLE_p2pServer.elf secondary-outputs
 
 # Tool invocations
 BLE_p2pServer.elf BLE_p2pServer.map: $(OBJS) $(USER_OBJS) C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BLE_p2pServer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-g++ -o "BLE_p2pServer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\STM32CubeIDE\STM32WB5MMGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLE_p2pServer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

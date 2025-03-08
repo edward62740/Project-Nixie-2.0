@@ -46,7 +46,6 @@
  * Define BD_ADDR type: define proper address. Can only be GAP_PUBLIC_ADDR (0x00) or GAP_STATIC_RANDOM_ADDR (0x01)
  */
 #define CFG_IDENTITY_ADDRESS              GAP_PUBLIC_ADDR
-
 /**
  * Define privacy: PRIVACY_DISABLED or PRIVACY_ENABLED
  */
@@ -118,7 +117,7 @@
 /**
  * Device name configuration for Generic Access Service
  */
-#define CFG_GAP_DEVICE_NAME             "WB Sensors"
+#define CFG_GAP_DEVICE_NAME             "TEMPLATE"
 #define CFG_GAP_DEVICE_NAME_LENGTH      (8)
 
 /**
@@ -186,7 +185,7 @@
 #define CONN_P(x) ((int)((x)/1.25f))
 
   /*  L2CAP Connection Update request parameters used for test only with smart Phone */
-#define L2CAP_REQUEST_NEW_CONN_PARAM             0
+#define L2CAP_REQUEST_NEW_CONN_PARAM             1
 
 #define L2CAP_INTERVAL_MIN              CONN_P(1000) /* 1s */
 #define L2CAP_INTERVAL_MAX              CONN_P(1000) /* 1s */
@@ -711,6 +710,7 @@ typedef enum
   /* USER CODE BEGIN CFG_SCH_Prio_Id_t */
 
   /* USER CODE END CFG_SCH_Prio_Id_t */
+  CFG_SCH_PRIO_NBR
 } CFG_SCH_Prio_Id_t;
 
 /**

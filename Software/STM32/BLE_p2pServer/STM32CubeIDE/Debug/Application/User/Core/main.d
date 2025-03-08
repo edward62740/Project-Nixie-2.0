@@ -38,8 +38,6 @@ Application/User/Core/main.o: \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_crs.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc_ex.h \
- ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi.h \
- ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi_ex.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim_ex.h \
  ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart.h \
@@ -66,7 +64,8 @@ Application/User/Core/main.o: \
  ../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.h \
  ../../Core/Inc/hw_conf.h ../../Middlewares/ST/STM32_WPAN/utilities/otp.h \
  ../../Middlewares/ST/STM32_WPAN/utilities/utilities_common.h \
- ../../Core/Inc/app_conf.h
+ ../../Core/Inc/app_conf.h \
+ C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core/app_main.h
 ../../Core/Inc/main.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal.h:
 ../../Core/Inc/stm32wbxx_hal_conf.h:
@@ -105,8 +104,6 @@ Application/User/Core/main.o: \
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_crs.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rtc_ex.h:
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi.h:
-../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_spi_ex.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim_ex.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart.h:
@@ -137,3 +134,4 @@ Application/User/Core/main.o: \
 ../../Middlewares/ST/STM32_WPAN/utilities/otp.h:
 ../../Middlewares/ST/STM32_WPAN/utilities/utilities_common.h:
 ../../Core/Inc/app_conf.h:
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core/app_main.h:

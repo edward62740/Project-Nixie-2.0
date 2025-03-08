@@ -90,7 +90,7 @@ static void APPE_SysEvtError(void * pPayload);
 static void Init_Rtc(void);
 
 /* USER CODE BEGIN PFP */
-
+static void Button_Init( void );
 
 /* Section specific to button management using UART */
 static void RxUART_Init(void);
@@ -134,9 +134,7 @@ void MX_APPE_Init(void)
    * The Standby mode should not be entered before the initialization is over
    * The default state of the Low Power Manager is to allow the Standby Mode so an request is needed here
    */
-  UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
   UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-
 
   RxUART_Init();
 
@@ -529,6 +527,7 @@ static void APPE_SysEvtReadyProcessing(void * pPayload)
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
 
+
 /* USER CODE END FD_LOCAL_FUNCTIONS */
 
 /*************************************************************
@@ -618,26 +617,12 @@ void shci_cmd_resp_wait(uint32_t timeout)
 /* USER CODE BEGIN FD_WRAP_FUNCTIONS */
 void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin )
 {
-  switch (GPIO_Pin)
-  {
-  case GPIO_PIN_12:
-    /* SW button 1 */
-    APP_BLE_Key_Button1_Action();
-    break; 
-    
-  case GPIO_PIN_13:
-    /* SW button 2 */
-    APP_BLE_Key_Button2_Action();
-    break; 
-  default:
-    break;
-  }
-  return;
+
 }
 
 static void RxUART_Init(void)
 {
-	HAL_UART_Receive_IT(&hlpuart1, aRxBuffer, 1U);
+
 }
 
 static void RxCpltCallback(void)
@@ -649,7 +634,7 @@ static void RxCpltCallback(void)
     {
       APP_DBG_MSG("received %s\n", CommandString);
 
-      UartCmdExecute();
+
 
       /* Clear receive buffer and character counter*/
       indexReceiveChar = 0;
@@ -662,29 +647,7 @@ static void RxCpltCallback(void)
   }
 
   /* Once a character has been sent, put back the device in reception mode */
-  //HW_UART_Receive_IT(hw_lpuart1, aRxBuffer, 1U, RxCpltCallback);
-  HAL_UART_Receive_IT(&hlpuart1, aRxBuffer, 1U);
-}
-
-static void UartCmdExecute(void)
-{
-  /* Parse received CommandString */
-  if(strcmp((char const*)CommandString, "SW1") == 0)
-  {
-    APP_DBG_MSG("SW1 OK\n");
-
-    HAL_EXTI_GenerateSWI(&exti_handle);
-  }
-  else if (strcmp((char const*)CommandString, "SW2") == 0)
-  {
-    APP_DBG_MSG("SW2 OK\n");
-
-    HAL_EXTI_GenerateSWI(&exti_handle);
-  }
-  else
-  {
-    APP_DBG_MSG("NOT RECOGNIZED COMMAND : %s\n", CommandString);
-  }
+  HW_UART_Receive_IT((hw_uart_id_t)CFG_DEBUG_TRACE_UART, aRxBuffer, 1U, RxCpltCallback);
 }
 
 /* USER CODE END FD_WRAP_FUNCTIONS */

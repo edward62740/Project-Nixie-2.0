@@ -6,7 +6,7 @@
     <WorkspacePath>C:\Users\Workstation\Documents\GitHub\Project-Nixie-2.0\Software\STM32\BLE_p2pServer\</WorkspacePath>
     <underRoot>false</underRoot>
     <TrustZone>0</TrustZone>
-    <HAL_Driver>C:\Users\Workstation\STM32Cube\Repository\STM32Cube_FW_WB_V1.19.0</HAL_Driver>
+    <HAL_Driver>C:\Users\Workstation\STM32Cube\Repository\STM32Cube_FW_WB_V1.21.0</HAL_Driver>
     <CMSIS>Drivers/CMSIS</CMSIS>
     <Toolchain>STM32CubeIDE</Toolchain>
     <IocFile>BLE_p2pServer.ioc</IocFile>
@@ -14,7 +14,7 @@
               
       <ProjectName>BLE_p2pServer</ProjectName>
            
-      <ProjectNature>C</ProjectNature>
+      <ProjectNature>CPP</ProjectNature>
        
       <Secure/>
             
@@ -45,7 +45,7 @@
                 
           </memories>
               
-          <startup>C:\Users\Workstation\STM32Cube\Repository\STM32Cube_FW_WB_V1.19.0\Drivers\CMSIS\Device\ST\STM32WBxx\Source\Templates\gcc\startup_stm32wb5mxx_cm4.s</startup>
+          <startup>C:\Users\Workstation\STM32Cube\Repository\STM32Cube_FW_WB_V1.21.0\Drivers\CMSIS\Device\ST\STM32WBxx\Source\Templates\gcc\startup_stm32wb5mxx_cm4.s</startup>
                 
           <LinkSettings>
             	
@@ -56,7 +56,7 @@
               
           <stackSize>0x1000</stackSize>
                   
-          <cpuclock>64</cpuclock>
+          <cpuclock>32</cpuclock>
                   
           <board>STM32WB5MM-DK</board>
               
@@ -124,11 +124,11 @@
                     
             <include>Drivers\CMSIS\Include</include>
                     
-            <include>Drivers\BSP\STM32WB5MM-DK</include>
+            <include>..\Drivers\BSP\STM32WB5MM-DK</include>
                     
-            <include>Drivers\BSP\Components\ssd1315</include>
+            <include>..\Drivers\BSP\Components\ssd1315</include>
                     
-            <include>Drivers\BSP\Components\Common</include>
+            <include>..\Drivers\BSP\Components\Common</include>
                     
             <include>Utilities\Fonts</include>
                     
@@ -304,31 +304,31 @@
                       
               <file>
                             
-                <name>Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk.c</name>
+                <name>../Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk.c</name>
                         
               </file>
                       
               <file>
                             
-                <name>Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk_bus.c</name>
+                <name>../Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk_bus.c</name>
                         
               </file>
                       
               <file>
                             
-                <name>Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk_lcd.c</name>
+                <name>../Drivers/BSP/STM32WB5MM-DK/stm32wb5mm_dk_lcd.c</name>
                         
               </file>
                       
               <file>
                             
-                <name>Drivers/BSP/Components/ssd1315/ssd1315.c</name>
+                <name>../Drivers/BSP/Components/ssd1315/ssd1315.c</name>
                         
               </file>
                       
               <file>
                             
-                <name>Drivers/BSP/Components/ssd1315/ssd1315_reg.c</name>
+                <name>../Drivers/BSP/Components/ssd1315/ssd1315_reg.c</name>
                         
               </file>
                   
@@ -496,18 +496,6 @@
                         
             <file>
                               
-              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_spi.c</name>
-                              
-            </file>
-                        
-            <file>
-                              
-              <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_spi_ex.c</name>
-                              
-            </file>
-                        
-            <file>
-                              
               <name>Drivers\STM32WBxx_HAL_Driver\Src\stm32wbxx_hal_tim.c</name>
                               
             </file>
@@ -535,7 +523,7 @@
         </group>
                
         <group>
-                  
+                      
           <name>Utilities</name>
                   
           <file>
