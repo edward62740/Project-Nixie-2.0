@@ -11,6 +11,7 @@
 "./Application/User/Core/sysmem.o"
 "./Application/User/Drivers/nixiedisplay.o"
 "./Application/User/Drivers/pca9698.o"
+"./Application/User/Drivers/pcf2131.o"
 "./Application/User/STM32_WPAN/App/app_ble.o"
 "./Application/User/STM32_WPAN/App/p2p_server_app.o"
 "./Application/User/STM32_WPAN/Target/hw_ipcc.o"

@@ -1,0 +1,74 @@
+#include "main.h"
+#include <app_main.h>
+#include "stdint.h"
+
+#include "pca9698.h"
+#include "nixiedisplay.h"
+
+PCA9698 bus1(&hi2c1, 0x20);
+PCA9698 bus2(&hi2c1, 0x21);
+bool state = 0;
+
+
+uint8_t pinout1[10] = {12, 13, 14, 15, 9, 8, 7, 6, 10, 11};
+uint8_t pinout2[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t pinout3[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t pinout4[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t pinout5[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t pinout6[10] = {54, 54, 54, 54, 54, 54, 54, 54, 54, 54};
+NixieDisplay display(6, 0, pinout1, pinout2, pinout3, pinout4, pinout5, pinout6);
+
+void app_main(void)
+{
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET); //OE1
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); //OE2
+
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET); //enable 170v
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET); //enable 3v
+
+	HAL_Delay(5);
+	bus1.configuration();
+
+	for (int i=0;i<5;i++) bus1.portMode(i, 0x00);
+
+	bus2.configuration();
+
+	for (int i=0;i<5;i++) bus2.portMode(i, 0x00);
+
+	display.init();
+	display.setCrossfade(false);
+}
+
+
+void app_loop(void)
+{
+
+	display.runProtection(CATHODE_PROTECTION_STYLE_SLOT, 5000, 500);
+	state = !state;
+	HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_1);
+}
+
+
+
+bool platformGPIOWrite(uint8_t pin, bool data)
+{
+
+  if (pin >= 40)
+  {
+    pin = pin - 40;
+    bus2.digitalWrite(pin, data);
+    return true;
+  }
+  else
+  {
+	bus1.digitalWrite(pin, data);
+    return true;
+  }
+
+  return false;
+}
+
+void platformDelayMs(uint32_t ms)
+{
+	HAL_Delay(ms);
+}

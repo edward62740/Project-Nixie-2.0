@@ -139,11 +139,12 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     app_loop();
-    HAL_Delay(500);
+    HAL_Delay(5);
 
-    printf("Scanning I2C bus:\r\n" );
+    printf("Scanning I2C bus 0:\r\n" );
   	HAL_StatusTypeDef result;
   	uint8_t i;
+	  printf("Found: ");
   	for (i=1; i<128; i++)
   	{
   	  /*
@@ -154,15 +155,37 @@ int main(void)
   	   * timeout 2
   	   */
   	  result = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 2, 100);
+
   	  if (result != HAL_OK) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
   	  {
-  		  printf("."); // No ACK received at that address
   	  }
   	  if (result == HAL_OK)
   	  {
-  		  printf("%d", i); // Received an ACK at that address
+  		  printf("%d, ", i); // Received an ACK at that address
   	  }
   	}
+  	printf("\r\nScanning I2C bus 1:\r\n" );
+  	printf("Found: ");
+  	  	for (i=1; i<128; i++)
+  	  	{
+  	  	  /*
+  	  	   * the HAL wants a left aligned i2c address
+  	  	   * &hi2c1 is the handle
+  	  	   * (uint16_t)(i<<1) is the i2c address left aligned
+  	  	   * retries 2
+  	  	   * timeout 2
+  	  	   */
+  	  	  result = HAL_I2C_IsDeviceReady(&hi2c3, (uint16_t)(i<<1), 2, 100);
+  	  	  if (result != HAL_OK) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
+  	  	  {
+
+  	  	  }
+  	  	  if (result == HAL_OK)
+  	  	  {
+  	  		  printf("%d, ", i); // Received an ACK at that address
+  	  	  }
+  	  	}
+  	  printf("\r\n" );
 
     			  //HAL_Delay(500);
   }

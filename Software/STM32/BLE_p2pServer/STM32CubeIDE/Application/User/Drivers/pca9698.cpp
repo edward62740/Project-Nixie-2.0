@@ -39,6 +39,7 @@ void PCA9698::configuration() {
   HAL_I2C_Master_Transmit(_hi2c, (_i2caddr << 1), buffer, sizeof(buffer), HAL_MAX_DELAY);
 }
 
+
 /**
  * @brief Write to a specific GPIO pin.
  * @param pin The pin number (0-39).

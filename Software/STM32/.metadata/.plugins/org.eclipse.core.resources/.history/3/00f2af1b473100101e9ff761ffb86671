@@ -1,0 +1,142 @@
+#include "pcf2131.h"
+
+#define REG_SECONDS 0x01
+#define REG_MINUTES 0x02
+#define REG_HOURS   0x03
+#define REG_DAYS    0x04
+#define REG_WEEKDAYS 0x05
+#define REG_MONTHS  0x06
+#define REG_YEARS   0x07
+#define REG_CTRL1   0x00
+#define REG_CTRL2   0x10
+#define REG_SR_RESET 0x1E
+#define REG_CLKOUT  0x25
+
+static uint8_t dev_addr;
+
+static uint8_t bcd2dec(uint8_t val) {
+    return ((val / 16 * 10) + (val % 16));
+}
+static uint8_t dec2bcd(uint8_t val) {
+    return ((val / 10 * 16) + (val % 10));
+}
+
+void pcf2131_init(uint8_t addr) {
+    dev_addr = addr;
+    pcf2131_clear_interrupt();
+}
+
+void pcf2131_set_time(struct tm *t) {
+    uint8_t data[7];
+    data[0] = dec2bcd(t->tm_sec);
+    data[1] = dec2bcd(t->tm_min);
+    data[2] = dec2bcd(t->tm_hour);
+    data[3] = dec2bcd(t->tm_mday);
+    data[4] = dec2bcd(t->tm_wday);
+    data[5] = dec2bcd(t->tm_mon + 1);
+    data[6] = dec2bcd(t->tm_year - 100);
+
+    i2c_write(dev_addr, REG_SECONDS, data, 7);
+}
+
+time_t pcf2131_get_time(void) {
+    uint8_t data[7];
+    struct tm t;
+
+    i2c_read(dev_addr, REG_SECONDS, data, 7);
+
+    t.tm_sec  = bcd2dec(data[0] & 0x7F);
+    t.tm_min  = bcd2dec(data[1]);
+    t.tm_hour = bcd2dec(data[2]);
+    t.tm_mday = bcd2dec(data[3]);
+    t.tm_wday = bcd2dec(data[4]);
+    t.tm_mon  = bcd2dec(data[5]) - 1;
+    t.tm_year = bcd2dec(data[6]) + 100;
+    t.tm_isdst = 0;
+
+    return mktime(&t);
+}
+
+void pcf2131_set_alarm(pcf2131_alarm_setting_t field, int val, int int_sel) {
+    uint8_t reg = 0x08 + field; // Alarm base is at 0x08
+    uint8_t data = (val == 0x80) ? 0x80 : dec2bcd(val);
+    i2c_write(dev_addr, reg, &data, 1);
+
+    uint8_t mask_reg = (int_sel == 0) ? 0x28 : 0x2A; // INT_A_MASK1 or INT_B_MASK1
+    uint8_t ctrl2;
+
+    i2c_read(dev_addr, REG_CTRL2, &ctrl2, 1);
+    ctrl2 |= 0x02; // Enable alarm interrupt
+    i2c_write(dev_addr, REG_CTRL2, &ctrl2, 1);
+}
+
+void pcf2131_clear_alarm(void) {
+    uint8_t ctrl2;
+    i2c_read(dev_addr, REG_CTRL2, &ctrl2, 1);
+    ctrl2 &= ~(0x10); // Clear AF
+    i2c_write(dev_addr, REG_CTRL2, &ctrl2, 1);
+}
+
+void pcf2131_disable_alarm(void) {
+    uint8_t ctrl2;
+    i2c_read(dev_addr, REG_CTRL2, &ctrl2, 1);
+    ctrl2 &= ~(0x02); // Clear AIE
+    i2c_write(dev_addr, REG_CTRL2, &ctrl2, 1);
+}
+
+uint8_t pcf2131_clear_interrupt(void) {
+    uint8_t data[3];
+    i2c_read(dev_addr, REG_CTRL2, data, 3);
+
+    data[0] &= ~(data[0] & 0x90); // Clear AF and TF
+    data[0] &= ~0x49;             // Also clear AIE, TIE, SF
+    data[1] &= ~0x08;             // Clear Control_3 flags
+    data[2] &= ~0xF0;             // Clear Control_4 flags
+
+    i2c_write(dev_addr, REG_CTRL2, data, 1);
+    i2c_write(dev_addr, 0x11, &data[1], 1);
+    i2c_write(dev_addr, 0x12, &data[2], 1);
+
+    return 0;
+}
+
+void pcf2131_enable_periodic(pcf2131_periodic_int_t sel, int int_sel) {
+    uint8_t ctrl1;
+    i2c_read(dev_addr, REG_CTRL1, &ctrl1, 1);
+
+    if (sel == PERIODIC_DISABLE) {
+        ctrl1 &= ~0x03;
+    } else {
+        ctrl1 = (ctrl1 & ~0x03) | ((sel == PERIODIC_EVERY_MINUTE) ? 0x02 : 0x01);
+    }
+    i2c_write(dev_addr, REG_CTRL1, &ctrl1, 1);
+
+    uint8_t mask_reg = (int_sel == 0) ? 0x28 : 0x2A;
+    uint8_t mask;
+    i2c_read(dev_addr, mask_reg, &mask, 1);
+    mask &= ~0x30;
+    i2c_write(dev_addr, mask_reg, &mask, 1);
+}
+
+void pcf2131_set_clockout(pcf2131_clkout_t freq) {
+    uint8_t val;
+    i2c_read(dev_addr, REG_CLKOUT, &val, 1);
+    val = (val & ~0x07) | (freq & 0x07);
+    i2c_write(dev_addr, REG_CLKOUT, &val, 1);
+}
+
+void pcf2131_software_reset(void) {
+    uint8_t val = 0x2C;
+    i2c_write(dev_addr, REG_SR_RESET, &val, 1);
+}
+
+void pcf2131_otp_refresh(void) {
+    uint8_t reg = REG_CLKOUT;
+    uint8_t v;
+
+    i2c_read(dev_addr, reg, &v, 1);
+    v &= ~0x20;
+    i2c_write(dev_addr, reg, &v, 1);
+    v |= 0x20;
+    i2c_write(dev_addr, reg, &v, 1);
+}

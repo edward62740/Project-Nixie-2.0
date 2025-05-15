@@ -60,6 +60,8 @@ class NixieDisplay {
     nixie_display_err_t setCrossfade(bool crossfade);
     nixie_display_err_t setScrollback(bool scrollback);
     nixie_display_err_t runProtection(nixie_display_protection_t type, uint32_t ms, uint32_t CATHODE_PROTECTION_INTER_MS = 15);
+
+    nixie_display_err_t iterateThroughIndices(uint8_t* idx, uint32_t len, uint32_t delay_ms, bool dir);
     private:
     nixie_display_err_t writeTubeInternal(uint8_t tube, uint8_t current, uint8_t prev);
 

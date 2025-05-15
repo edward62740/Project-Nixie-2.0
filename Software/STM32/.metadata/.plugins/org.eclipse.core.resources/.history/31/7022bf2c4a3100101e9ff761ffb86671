@@ -1,0 +1,118 @@
+#include "pcf2131.h"
+
+
+
+PCF2131::PCF2131(I2C_HandleTypeDef* i2c, uint8_t address)
+ : _i2c(i2c), _addr(address)
+{}
+
+void PCF2131::begin() {
+  clearInterrupts();
+}
+
+void PCF2131::setTime(const struct tm& t) {
+  uint8_t buf[8] = { 0,
+    dec2bcd(t.tm_sec),
+    dec2bcd(t.tm_min),
+    dec2bcd(t.tm_hour),
+    dec2bcd(t.tm_mday),
+    dec2bcd(t.tm_wday),
+    dec2bcd(t.tm_mon + 1),
+    dec2bcd(t.tm_year - 100)
+  };
+	this->bit_op8( REG_CTRL1, ~0x28, 0x20 );
+	this->bit_op8( REG_SR_RESET,  (uint8_t)(~0x80), 0x80 );
+  writeRegs(REG_100TH_SECONDS, buf, 8);
+  this->bit_op8( Control_1, ~0x20, 0x00 );
+}
+
+time_t PCF2131::getTime() {
+  uint8_t buf[7];
+  readRegs(REG_SECONDS, buf, 7);
+  struct tm t{};
+  t.tm_sec   = bcd2dec(buf[0] & 0x7F);
+  t.tm_min   = bcd2dec(buf[1]);
+  t.tm_hour  = bcd2dec(buf[2]);
+  t.tm_mday  = bcd2dec(buf[3]);
+  t.tm_wday  = bcd2dec(buf[4]);
+  t.tm_mon   = bcd2dec(buf[5]) - 1;
+  t.tm_year  = bcd2dec(buf[6]) + 100;
+  t.tm_isdst = 0;
+  return mktime(&t);
+}
+
+void PCF2131::setAlarm(AlarmField f, uint8_t val, int intSel) {
+  uint8_t v = (val == 0x80) ? 0x80 : dec2bcd(val);
+  //writeRegs(REG_ALARM0 + f, &v, 1);
+  // enable interrupt in CTRL2
+  uint8_t c2; readRegs(REG_CTRL2, &c2, 1);
+  c2 |= 0x02;
+  writeRegs(REG_CTRL2, &c2, 1);
+}
+
+void PCF2131::clearAlarm() {
+  uint8_t c2; readRegs(REG_CTRL2, &c2, 1);
+  c2 &= ~0x10;  // clear AF
+  writeRegs(REG_CTRL2, &c2, 1);
+}
+
+void PCF2131::disableAlarm() {
+  uint8_t c2; readRegs(REG_CTRL2, &c2, 1);
+  c2 &= ~0x02;  // clear AIE
+  writeRegs(REG_CTRL2, &c2, 1);
+}
+
+void PCF2131::clearInterrupts() {
+  uint8_t tmp[3];
+  readRegs(REG_CTRL2, tmp, 3);
+  // clear Control2 flags and masks
+  tmp[0] &= ~(tmp[0] & 0x90);
+  tmp[0] &= ~0x49;
+  // clear Control3 flag (0x08) @ reg=0x11
+  // clear Control4 flags (0xF0) @ reg=0x12
+  writeRegs(REG_CTRL2, &tmp[0], 1);
+  writeRegs(0x11, &tmp[1], 1);
+  writeRegs(0x12, &tmp[2], 1);
+}
+
+void PCF2131::enablePeriodic(Periodic p, int intSel) {
+  uint8_t c1; readRegs(REG_CTRL1, &c1,1);
+  c1 = (p==DISABLE ? (c1&~0x03) : (c1&~0x03) | (p==EVERY_MINUTE?0x02:0x01));
+  writeRegs(REG_CTRL1, &c1,1);
+  // mask regs at 0x28/0x2A would go here...
+}
+
+void PCF2131::setClockOut(ClockOut clk) {
+  uint8_t v; readRegs(REG_CLKOUT, &v,1);
+  v = (v&~0x07)|(clk&0x07);
+  writeRegs(REG_CLKOUT, &v,1);
+}
+
+void PCF2131::softwareReset() {
+  uint8_t v = 0x2C;
+  writeRegs(REG_SR_RESET, &v,1);
+}
+
+void PCF2131::otpRefresh() {
+  uint8_t v; readRegs(REG_CLKOUT, &v, 1);
+  v &= ~0x20; writeRegs(REG_CLKOUT, &v,1);
+  v |=  0x20; writeRegs(REG_CLKOUT, &v,1);
+}
+
+// ———— Low-level I2C ————
+int PCF2131::writeRegs(uint8_t reg, const uint8_t* data, uint16_t len) {
+  return HAL_I2C_Mem_Write(_i2c, _addr<<1, reg,
+                           I2C_MEMADD_SIZE_8BIT,
+                           const_cast<uint8_t*>(data),
+                           len, HAL_MAX_DELAY) == HAL_OK ? 0:-1;
+}
+int PCF2131::readRegs(uint8_t reg, uint8_t* data, uint16_t len) {
+  return HAL_I2C_Mem_Read(_i2c, _addr<<1, reg,
+                          I2C_MEMADD_SIZE_8BIT,
+                          data, len, HAL_MAX_DELAY) == HAL_OK ?0:-1;
+}
+void PCF2131::bit_op8(  uint8_t reg,  uint8_t mask,  uint8_t value )
+{
+	uint8_t	tmp	= reg_r( reg ) & mask;
+	this->writeRegs( reg, tmp | value , 1);
+}

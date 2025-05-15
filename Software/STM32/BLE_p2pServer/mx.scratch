@@ -18,7 +18,20 @@
        
       <Secure/>
             
-      <filestoremove>                           </filestoremove>
+      <filestoremove>
+                
+        <file>
+                      
+          <name>Core/Src/stm32wbxx_hal_timebase_tim.c</name>
+                  
+        </file>
+        <file>
+                      
+          <name>..\Src\stm32wb5mm-dk.c</name>
+                  
+        </file>
+                           
+      </filestoremove>
           
       <configs>
         <config>

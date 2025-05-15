@@ -1,0 +1,144 @@
+#pragma once
+
+#include "stm32wbxx_hal.h"  // or your device’s HAL
+#include <ctime>
+#include <cstdint>
+
+class PCF2131 {
+public:
+  /// @param i2c      Pointer to your HAL I2C handle
+  /// @param address  7-bit I²C address (e.g. 0xA6>>1)
+  PCF2131(I2C_HandleTypeDef* i2c, uint8_t address);
+
+  void begin();
+
+  /// Set RTC from a struct tm
+  void setTime(const struct tm& t);
+
+  /// Read RTC into time_t
+  time_t getTime();
+
+  enum AlarmField {
+    SECOND = 0,
+    MINUTE,
+    HOUR,
+    DAY,
+    WEEKDAY
+  };
+  /// set alarm on field; val=0x80 to disable; intSel=0 for INT_A, 1 for INT_B
+  void setAlarm(AlarmField field, uint8_t val, int intSel=0);
+  void clearAlarm();
+  void disableAlarm();
+
+  /// Clear any interrupt flags on the chip
+  void clearInterrupts();
+
+  enum Periodic {
+    DISABLE = 0,
+    EVERY_SECOND,
+    EVERY_MINUTE
+  };
+  void enablePeriodic(Periodic p, int intSel=0);
+
+  enum ClockOut {
+    CLK_32768HZ = 0,
+    CLK_16384HZ,
+    CLK_8192HZ,
+    CLK_4096HZ,
+    CLK_2048HZ,
+    CLK_1024HZ,
+    CLK_1HZ,
+    CLK_DISABLED
+  };
+  void setClockOut(ClockOut clk);
+
+  void softwareReset();
+  void otpRefresh();
+
+private:
+  I2C_HandleTypeDef* _i2c;
+  uint8_t             _addr;
+
+  // low-level
+  int  writeRegs(uint8_t reg, const uint8_t* data, uint16_t len);
+  int   readRegs(uint8_t reg,       uint8_t* data, uint16_t len);
+
+  static uint8_t bcd2dec(uint8_t x) { return (x>>4)*10 + (x&0x0F); }
+  static uint8_t dec2bcd(uint8_t x) { return (x/10)<<4 | (x%10); }
+
+  // Control & reset registers
+  #define REG_CONTROL_1     0x00
+  #define REG_CONTROL_2     0x01
+  #define REG_CONTROL_3     0x02
+  #define REG_CONTROL_4     0x03
+  #define REG_CONTROL_5     0x04
+  #define REG_SR_RESET      0x05
+
+  // Time-keeping registers
+  #define REG_100TH_SECONDS 0x06  // hundredths of a second
+  #define REG_SECONDS       0x07
+  #define REG_MINUTES       0x08
+  #define REG_HOURS         0x09
+  #define REG_DAYS          0x0A
+  #define REG_WEEKDAYS      0x0B
+  #define REG_MONTHS        0x0C
+  #define REG_YEARS         0x0D
+
+  // Alarm registers
+  #define REG_SECOND_ALARM   0x0E
+  #define REG_MINUTE_ALARM   0x0F
+  #define REG_HOUR_ALARM     0x10
+  #define REG_DAY_ALARM      0x11
+  #define REG_WEEKDAY_ALARM  0x12
+
+  // Clock-output control
+  #define REG_CLKOUT_CTL     0x13
+
+  // Timestamp 1 (control + data)
+  #define REG_TS1_CTRL       0x14
+  #define REG_TS1_SECONDS    0x15
+  #define REG_TS1_MINUTES    0x16
+  #define REG_TS1_HOURS      0x17
+  #define REG_TS1_DAYS       0x18
+  #define REG_TS1_MONTHS     0x19
+  #define REG_TS1_YEARS      0x1A
+
+  // Timestamp 2
+  #define REG_TS2_CTRL       0x1B
+  #define REG_TS2_SECONDS    0x1C
+  #define REG_TS2_MINUTES    0x1D
+  #define REG_TS2_HOURS      0x1E
+  #define REG_TS2_DAYS       0x1F
+  #define REG_TS2_MONTHS     0x20
+  #define REG_TS2_YEARS      0x21
+
+  // Timestamp 3
+  #define REG_TS3_CTRL       0x22
+  #define REG_TS3_SECONDS    0x23
+  #define REG_TS3_MINUTES    0x24
+  #define REG_TS3_HOURS      0x25
+  #define REG_TS3_DAYS       0x26
+  #define REG_TS3_MONTHS     0x27
+  #define REG_TS3_YEARS      0x28
+
+  // Timestamp 4
+  #define REG_TS4_CTRL       0x29
+  #define REG_TS4_SECONDS    0x2A
+  #define REG_TS4_MINUTES    0x2B
+  #define REG_TS4_HOURS      0x2C
+  #define REG_TS4_DAYS       0x2D
+  #define REG_TS4_MONTHS     0x2E
+  #define REG_TS4_YEARS      0x2F
+
+  // Aging and interrupt-mask registers
+  #define REG_AGING_OFFSET   0x30
+  #define REG_INT_A_MASK1    0x31
+  #define REG_INT_A_MASK2    0x32
+  #define REG_INT_B_MASK1    0x33
+  #define REG_INT_B_MASK2    0x34
+
+  // Watchdog timer
+  #define REG_WDT_CTL        0x35
+  #define REG_WDT_VALUE      0x36
+
+};

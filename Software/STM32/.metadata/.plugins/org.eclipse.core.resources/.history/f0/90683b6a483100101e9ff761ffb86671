@@ -1,0 +1,68 @@
+#pragma once
+
+#include "stm32wbxx_hal.h"  // or your device’s HAL
+#include <ctime>
+#include <cstdint>
+
+class PCF2131 {
+public:
+  /// @param i2c      Pointer to your HAL I2C handle
+  /// @param address  7-bit I²C address (e.g. 0xA6>>1)
+  PCF2131(I2C_HandleTypeDef* i2c, uint8_t address);
+
+  void begin();
+
+  /// Set RTC from a struct tm
+  void setTime(const struct tm& t);
+
+  /// Read RTC into time_t
+  time_t getTime();
+
+  enum AlarmField {
+    SECOND = 0,
+    MINUTE,
+    HOUR,
+    DAY,
+    WEEKDAY
+  };
+  /// set alarm on field; val=0x80 to disable; intSel=0 for INT_A, 1 for INT_B
+  void setAlarm(AlarmField field, uint8_t val, int intSel=0);
+  void clearAlarm();
+  void disableAlarm();
+
+  /// Clear any interrupt flags on the chip
+  void clearInterrupts();
+
+  enum Periodic {
+    DISABLE = 0,
+    EVERY_SECOND,
+    EVERY_MINUTE
+  };
+  void enablePeriodic(Periodic p, int intSel=0);
+
+  enum ClockOut {
+    CLK_32768HZ = 0,
+    CLK_16384HZ,
+    CLK_8192HZ,
+    CLK_4096HZ,
+    CLK_2048HZ,
+    CLK_1024HZ,
+    CLK_1HZ,
+    CLK_DISABLED
+  };
+  void setClockOut(ClockOut clk);
+
+  void softwareReset();
+  void otpRefresh();
+
+private:
+  I2C_HandleTypeDef* _i2c;
+  uint8_t             _addr;
+
+  // low-level
+  int  writeRegs(uint8_t reg, const uint8_t* data, uint16_t len);
+  int   readRegs(uint8_t reg,       uint8_t* data, uint16_t len);
+
+  static uint8_t bcd2dec(uint8_t x) { return (x>>4)*10 + (x&0x0F); }
+  static uint8_t dec2bcd(uint8_t x) { return (x/10)<<4 | (x%10); }
+};

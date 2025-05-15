@@ -3,19 +3,23 @@
 #include "stdint.h"
 
 #include "pca9698.h"
+#include "pcf2131.h"
 #include "nixiedisplay.h"
 
 PCA9698 bus1(&hi2c1, 0x20);
 PCA9698 bus2(&hi2c1, 0x21);
+PCF2131 rtc(&hi2c3, (0xA6 >> 1));
 bool state = 0;
 
 
-uint8_t pinout1[10] = {5, 4, 3, 2, 1, 0, 9, 8, 7, 6};
-uint8_t pinout2[10] = {15, 14, 13, 12, 11, 10, 27, 26, 25, 24};
-uint8_t pinout3[10] = {35, 34, 31, 30, 29, 28, 39, 38, 37, 36};
-uint8_t pinout4[10] = {45, 44, 43, 42, 41, 40, 49, 48, 47, 46};
-uint8_t pinout5[10] = {55, 54, 53, 52, 51, 50, 67, 66, 65, 64};
-uint8_t pinout6[10] = {75, 74, 71, 70, 69, 68, 79, 78, 77, 76};
+uint8_t pinout1[10] = {13, 12, 11, 10, 6, 7, 8, 9, 15, 14}; // 1 0 9 8 7 6 5 4 3 2 else 1 R 0 9 8 7 6 5 3 2
+uint8_t pinout2[10] = {33, 19, 18, 17, 16, 35, 36, 37, 38, 34};//{18, 33, 34, 38, 39, 37, 36, 35, 16, 17}; //39
+uint8_t pinout3[10] = {25, 32, 31, 30, 26, 27, 28, 29, 23, 24};
+uint8_t pinout4[10] = {47, 54, 55, 56, 57, 49, 50, 51, 52, 48};
+uint8_t pinout5[10] = {60, 46, 45, 44, 40, 41, 42, 43, 62, 61};
+uint8_t pinout6[10] = {67, 66, 65, 64, 63, 69, 70, 71, 72, 68};
+
+uint8_t decimals[3] = {39, 53, 73};
 NixieDisplay display(6, 0, pinout1, pinout2, pinout3, pinout4, pinout5, pinout6);
 
 void app_main(void)
@@ -36,22 +40,66 @@ void app_main(void)
 	for (int i=0;i<5;i++) bus2.portMode(i, 0x00);
 
 	display.init();
-	display.setCrossfade(false);
+	display.setCrossfade(true);
+
+	display.clear();
+	display.clear();
+	for (int i=0; i<12; i++)
+	{
+		display.iterateThroughIndices(&decimals[0], 3, 15, i%2);
+	}
+
+
+
+
+	// instantiate the RTC driver:
+
+	  rtc.begin();
+	  struct tm now = {};
+	  now.tm_year = 2025 - 1900;  // years since 1900
+	  now.tm_mon  = 5 - 1;        // months 0–11
+	  now.tm_mday= 15;
+	  now.tm_hour= 13;
+	  now.tm_min = 15;
+	  now.tm_sec = 10;
+
+
+	  time_t target = mktime(&now);
+	  if (target == (time_t)-1) {
+	      printf("mktime failed\n");
+	  } else {
+	      // Send to the RTC
+	      //rtc.setTime(now);
+
+	      printf("target: %s", ctime(&target));
+	  }
+
+
+	  // read back and print
+	  time_t t = rtc.getTime();
+	  printf("RTC: %s\n", ctime(&t));
+
 }
 
 
 void app_loop(void)
 {
+    //display.runProtection(CATHODE_PROTECTION_STYLE_SLOT, 1200, 120);
 
-	for (int i=0; i<40; i++)
-	{
+    state = !state;
+    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_1);
 
-		display.write((rand() % 900000) + 100000);
+    time_t t = rtc.getTime();
 
-	}
-	state = !state;
-	HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_1);
+    struct tm *current = localtime(&t);  // NOTE: returns pointer to static struct
+
+
+    display.writeTime(current);
+
+    printf("RTC: %s\n", ctime(&t));
+    HAL_Delay(100);
 }
+
 
 
 

@@ -1,0 +1,127 @@
+#include "main.h"
+#include <app_main.h>
+#include "stdint.h"
+
+#include "pca9698.h"
+#include "pcf2131.h"
+#include "nixiedisplay.h"
+
+PCA9698 bus1(&hi2c1, 0x20);
+PCA9698 bus2(&hi2c1, 0x21);
+PCF2131 rtc(&hi2c3, (0xA6 >> 1));
+bool state = 0;
+
+
+uint8_t pinout1[10] = {13, 12, 11, 10, 6, 7, 8, 9, 15, 14}; // 1 0 9 8 7 6 5 4 3 2 else 1 R 0 9 8 7 6 5 3 2
+uint8_t pinout2[10] = {33, 19, 18, 17, 16, 35, 36, 37, 38, 34};//{18, 33, 34, 38, 39, 37, 36, 35, 16, 17}; //39
+uint8_t pinout3[10] = {25, 32, 31, 30, 26, 27, 28, 29, 23, 24};
+uint8_t pinout4[10] = {47, 54, 55, 56, 57, 49, 50, 51, 52, 48};
+uint8_t pinout5[10] = {60, 46, 45, 44, 40, 41, 42, 43, 62, 61};
+uint8_t pinout6[10] = {67, 66, 65, 64, 63, 69, 70, 71, 72, 68};
+
+uint8_t decimals[3] = {39, 53, 73};
+NixieDisplay display(6, 0, pinout1, pinout2, pinout3, pinout4, pinout5, pinout6);
+
+void app_main(void)
+{
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET); //OE1
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); //OE2
+
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET); //enable 170v
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET); //enable 3v
+
+	HAL_Delay(5);
+	bus1.configuration();
+
+	for (int i=0;i<5;i++) bus1.portMode(i, 0x00);
+
+	bus2.configuration();
+
+	for (int i=0;i<5;i++) bus2.portMode(i, 0x00);
+
+	display.init();
+	display.setCrossfade(false);
+
+	display.clear();
+	display.clear();
+	for (int i=0; i<12; i++)
+	{
+		display.iterateThroughIndices(&decimals[0], 3, 60, i%2);
+	}
+	display.clear();
+
+
+	// instantiate the RTC driver:
+
+	  rtc.begin();
+	  struct tm now = {};
+	  now.tm_year = 2025 - 1900;  // years since 1900
+	  now.tm_mon  = 5 - 1;        // months 0–11
+	  now.tm_mday= 15;
+	  now.tm_hour= 13;
+	  now.tm_min = 15;
+	  now.tm_sec = 10;
+
+	  // Let mktime() normalize tm_wday, tm_yday, etc., and get a time_t
+	  time_t target = mktime(&now);
+	  if (target == (time_t)-1) {
+	      printf("mktime failed\n");
+	  } else {
+	      // Send to the RTC
+	      //rtc.setTime(now);
+
+	      // Print what you actually set
+	      printf("target: %s", ctime(&target));
+	  }
+
+
+	  // read back and print (e.g. via SWO/UART)
+	  time_t t = rtc.getTime();
+	  printf("RTC: %s\n", ctime(&t));
+
+}
+
+
+void app_loop(void)
+{
+    //display.runProtection(CATHODE_PROTECTION_STYLE_SLOT, 1200, 120);
+
+    state = !state;
+    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_1);
+
+    time_t t = rtc.getTime();
+
+    struct tm *current = localtime(&t);  // NOTE: returns pointer to static struct
+
+
+    display.writeTime(current);
+
+    printf("RTC: %s\n", ctime(&t));
+    HAL_Delay(100);
+}
+
+
+
+
+bool platformGPIOWrite(uint8_t pin, bool data)
+{
+
+  if (pin >= 40)
+  {
+    pin = pin - 40;
+    bus2.digitalWrite(pin, data);
+    return true;
+  }
+  else
+  {
+	bus1.digitalWrite(pin, data);
+    return true;
+  }
+
+  return false;
+}
+
+void platformDelayMs(uint32_t ms)
+{
+	HAL_Delay(ms);
+}

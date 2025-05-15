@@ -6,15 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../Application/User/Drivers/nixiedisplay.cpp \
-../Application/User/Drivers/pca9698.cpp 
+../Application/User/Drivers/pca9698.cpp \
+../Application/User/Drivers/pcf2131.cpp 
 
 OBJS += \
 ./Application/User/Drivers/nixiedisplay.o \
-./Application/User/Drivers/pca9698.o 
+./Application/User/Drivers/pca9698.o \
+./Application/User/Drivers/pcf2131.o 
 
 CPP_DEPS += \
 ./Application/User/Drivers/nixiedisplay.d \
-./Application/User/Drivers/pca9698.d 
+./Application/User/Drivers/pca9698.d \
+./Application/User/Drivers/pcf2131.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +27,7 @@ Application/User/Drivers/%.o Application/User/Drivers/%.su Application/User/Driv
 clean: clean-Application-2f-User-2f-Drivers
 
 clean-Application-2f-User-2f-Drivers:
-	-$(RM) ./Application/User/Drivers/nixiedisplay.cyclo ./Application/User/Drivers/nixiedisplay.d ./Application/User/Drivers/nixiedisplay.o ./Application/User/Drivers/nixiedisplay.su ./Application/User/Drivers/pca9698.cyclo ./Application/User/Drivers/pca9698.d ./Application/User/Drivers/pca9698.o ./Application/User/Drivers/pca9698.su
+	-$(RM) ./Application/User/Drivers/nixiedisplay.cyclo ./Application/User/Drivers/nixiedisplay.d ./Application/User/Drivers/nixiedisplay.o ./Application/User/Drivers/nixiedisplay.su ./Application/User/Drivers/pca9698.cyclo ./Application/User/Drivers/pca9698.d ./Application/User/Drivers/pca9698.o ./Application/User/Drivers/pca9698.su ./Application/User/Drivers/pcf2131.cyclo ./Application/User/Drivers/pcf2131.d ./Application/User/Drivers/pcf2131.o ./Application/User/Drivers/pcf2131.su
 
 .PHONY: clean-Application-2f-User-2f-Drivers
 

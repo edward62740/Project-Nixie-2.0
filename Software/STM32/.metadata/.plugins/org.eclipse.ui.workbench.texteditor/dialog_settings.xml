@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="111111"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="111111"/>
 			<item value="Adv_Cancel"/>
 			<item value="Adv_Cancel("/>
 			<item value="stop adver"/>
@@ -22,7 +23,6 @@
 			<item value="4000"/>
 			<item value="DMA"/>
 			<item value="HW_TRANSMIT"/>
-			<item value="ipcc"/>
 		</list>
 		<list key="replacehistory">
 			<item value="printf"/>

@@ -60,6 +60,7 @@ Application/User/Core/app_main.o: ../Application/User/Core/app_main.cpp \
  ../../Core/Inc/app_entry.h ../../Core/Inc/app_common.h \
  C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core/app_main.h \
  C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/pca9698.h \
+ C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/pcf2131.h \
  C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/nixiedisplay.h
 ../../Core/Inc/main.h:
 ../../Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal.h:
@@ -124,4 +125,5 @@ Application/User/Core/app_main.o: ../Application/User/Core/app_main.cpp \
 ../../Core/Inc/app_common.h:
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Core/app_main.h:
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/pca9698.h:
+C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/pcf2131.h:
 C:/Users/Workstation/Documents/GitHub/Project-Nixie-2.0/Software/STM32/BLE_p2pServer/STM32CubeIDE/Application/User/Drivers/nixiedisplay.h:
