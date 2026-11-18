@@ -1,8 +1,0 @@
-Removed Member From Class: ClassName=Drivers Member=C20
-Added Component: Designator=R29(RESC3225X70X50NL20T20)
-Add component (AddParameter): Name = "Manufacturer"; Value = "Panasonic"; VariantName = "[No Variations]"
-Add component (AddParameter): Name = "Part Number"; Value = "ERJ-L14KF20MU"; VariantName = "[No Variations]"
-Added Pin To Net: NetName=VIN Pin=R29-1
-Added Pin To Net: NetName=VBUS Pin=R29-2
-Added Member To Class: ClassName=Drivers Member=Component C24 Capacitor 10µF +/-40% 6.3V 0402
-Added Member To Class: ClassName=USB PD Member=Component R29 IsDirectPower DNC

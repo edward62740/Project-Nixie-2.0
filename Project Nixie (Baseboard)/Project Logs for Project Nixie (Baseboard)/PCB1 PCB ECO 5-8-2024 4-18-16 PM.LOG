@@ -1,5 +1,0 @@
-Added Component: Designator=U12(QFN24_W-QFN4040-24_A1_DIO)
-Add component (AddParameter): Name = "Mfr_Name"; Value = "Diodes Inc"; VariantName = "[No Variations]"
-Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
-Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
-Added Member To Class: ClassName=USB PD Member=Component U12 AP33771DKZ-13
